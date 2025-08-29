@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:all": "vite build --mode scratch-click && vite build --mode scratch-auto && vite build --mode wheel-click && vite build --mode wheel-auto",
+    "deploy:all": "npm run build:all && firebase deploy"
   },
   "keywords": [],
   "author": "",

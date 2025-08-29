@@ -1,6 +1,4 @@
-import './style.css'
-import './styles/dev.css'
-import { setupDevPanel } from './js/dev-panel.js'
+import { setupDevPanel } from './assets/js/dev-panel.js'
 
 const isDevelopment = import.meta.env.DEV;
 let gameMode = localStorage.getItem('bookra_gameMode') || 'click';

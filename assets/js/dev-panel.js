@@ -24,6 +24,47 @@ function saveDevState(state) {
 export function setupDevPanel(gameMode, updateGameMode, isDevelopment) {
   if (!isDevelopment) return;
 
+  // Import dev CSS only in development
+  import('../css/dev.css');
+
+  // Create dev panel HTML
+  const devPanelHTML = `
+    <div class="dev-panel" id="devPanel" style="display: none;">
+      <div class="dev-section">
+        <h4>Game Type</h4>
+        <div class="mode-switcher">
+          <span class="mode-label">Scratch</span>
+          <label class="switch">
+            <input type="checkbox" id="gameTypeSwitcher">
+            <span class="slider"></span>
+          </label>
+          <span class="mode-label">Wheel</span>
+        </div>
+      </div>
+      <div class="dev-section">
+        <h4>Game Mode</h4>
+        <div class="mode-switcher">
+          <span class="mode-label">Click</span>
+          <label class="switch">
+            <input type="checkbox" id="modeSwitcher">
+            <span class="slider"></span>
+          </label>
+          <span class="mode-label">Auto</span>
+        </div>
+      </div>
+      <div class="dev-section">
+        <h4>Debug</h4>
+        <label>
+          <input type="checkbox" id="showBorders"> Показать рамки
+        </label>
+      </div>
+    </div>
+    <button class="dev-toggle" id="devToggle">DEV</button>
+  `;
+
+  // Add dev panel to body
+  document.body.insertAdjacentHTML('beforeend', devPanelHTML);
+
   const devToggle = document.getElementById('devToggle');
   const devPanel = document.getElementById('devPanel');
   const showBordersCheckbox = document.getElementById('showBorders');
