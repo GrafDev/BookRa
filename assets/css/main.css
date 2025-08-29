@@ -1,1 +1,4 @@
 /* Main styles entry point */
+@import url('./reset.css');
+@import url('./background.css');
+@import url('./layout.css');

@@ -7,12 +7,7 @@ function updateGameMode() {
   console.log('Current game mode:', gameMode);
 }
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <h1>BookRa</h1>
-    <p>Welcome to BookRa project!</p>
-  </div>
-`
+// Main app initialization
 
 if (isDevelopment) {
   setupDevPanel(gameMode, updateGameMode, isDevelopment);
