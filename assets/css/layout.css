@@ -93,6 +93,10 @@
   object-fit: contain;
 }
 
+.man1 img[alt="man1-part1"] {
+  z-index: 1;
+}
+
 .man2 img {
   width: 100%;
   height: 100%;
