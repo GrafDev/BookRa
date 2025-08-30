@@ -2,6 +2,35 @@ import { setupDevPanel } from './assets/js/dev-panel.js'
 import { getGameConfig, applyGameStyles } from './assets/js/config.js'
 import { initMan1Animations } from './assets/js/man1-animations.js'
 
+// Prevent all zoom functionality
+function preventZoom() {
+  // Block Ctrl+Wheel
+  document.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Block keyboard zoom shortcuts
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+      e.preventDefault();
+    }
+  });
+
+  // Block right-click context menu
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // Block F11 fullscreen
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F11') {
+      e.preventDefault();
+    }
+  });
+}
+
 const isDevelopment = import.meta.env.DEV;
 let gameMode = localStorage.getItem('bookra_gameMode') || 'click';
 
@@ -41,3 +70,6 @@ if (isDevelopment) {
 
 // Initialize animations
 initMan1Animations();
+
+// Initialize zoom prevention
+preventZoom();

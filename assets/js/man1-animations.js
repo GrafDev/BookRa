@@ -138,6 +138,7 @@ export function createSimpleSwayAnimation(selector, angle = 2, duration = 1.5, e
   );
 }
 
+
 export function createScaleAnimation(selector, scale = 1.05, duration = 2, ease = 'power2.inOut') {
   const element = document.querySelector(selector);
   

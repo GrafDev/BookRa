@@ -42,13 +42,11 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  overflow: hidden;
 }
 
 .box1, .box2 {
   width: 30%;
   height: 100%;
-  overflow: hidden;
 }
 
 .man3 {
@@ -82,7 +80,6 @@
   width: 100%;
   height: 66.67%;
   position: relative;
-  overflow: hidden;
 }
 
 .man1 img {
@@ -99,9 +96,13 @@
 }
 
 .man2 img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: bottom;
 }
 
 .logo1, .logo2 {
