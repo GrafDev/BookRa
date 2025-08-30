@@ -110,6 +110,34 @@ export function createRedGlowAnimation(selector, glowSize = 20, duration = 2, ea
   );
 }
 
+export function createSimpleSwayAnimation(selector, angle = 2, duration = 1.5, ease = 'sine.inOut') {
+  const element = document.querySelector(selector);
+  
+  if (!element) {
+    console.warn(`Element with selector "${selector}" not found`);
+    return null;
+  }
+
+  // Set initial state with shadow and position
+  gsap.set(element, { 
+    rotation: 0,
+    transformOrigin: "left bottom",
+    filter: "drop-shadow(2px 4px 6px rgba(0,0,0,0.3))",
+    y: "2%"
+  });
+
+  return gsap.fromTo(element, 
+    { rotation: -angle },
+    { 
+      rotation: angle,
+      duration: duration,
+      yoyo: true,
+      repeat: -1,
+      ease: ease
+    }
+  );
+}
+
 export function createScaleAnimation(selector, scale = 1.05, duration = 2, ease = 'power2.inOut') {
   const element = document.querySelector(selector);
   
@@ -216,33 +244,36 @@ export function createOrbitWithRandomFade(selector, radius = 30, orbitDuration =
 }
 
 export function initMan1Animations() {
-  // Apply orbit with random fade animation to man1 (bigger amplitude)
-  createOrbitWithRandomFade('.man1', 50, 10);
+  // Apply orbit with random fade animation to man1 (bigger amplitude, faster)
+  createOrbitWithRandomFade('.man1', 50, 8);
   
-  // Apply red glow animation to man1-part1 (stronger red glow)
-  createRedGlowAnimation('.man1 img[alt="man1-part1"]', 35, 1.2, 'sine.inOut');
+  // Apply red glow animation to man1-part1 (stronger red glow, faster)
+  createRedGlowAnimation('.man1 img[alt="man1-part1"]', 35, 1.0, 'sine.inOut');
   
   // Apply brightness animation to man3-part2 (faster)
-  createBrightnessAnimation('.man3 img[alt="man3-part2"]', 1.7, 1.2, 'power3.out');
+  createBrightnessAnimation('.man3 img[alt="man3-part2"]', 1.7, 1.0, 'power3.out');
   
-  // Apply brightness animation to man4-part2 (slower)
-  createBrightnessAnimation('.man4 img[alt="man4-part2"]', 1.5, 2, 'power3.out');
+  // Apply brightness animation to man4-part2 (faster)
+  createBrightnessAnimation('.man4 img[alt="man4-part2"]', 1.5, 1.6, 'power3.out');
   
-  // Apply brightness animation to logo1-part2
-  createBrightnessAnimation('.logo1 img[alt="logo1-part2"]', 1.4, 2.4, 'power3.out');
+  // Apply brightness animation to logo1-part2 (faster)
+  createBrightnessAnimation('.logo1 img[alt="logo1-part2"]', 1.4, 2.0, 'power3.out');
   
-  // Apply brightness animation to logo2-part2
-  createBrightnessAnimation('.logo2 img[alt="logo2-part2"]', 1.6, 1.4, 'power3.out');
+  // Apply brightness animation to logo2-part2 (faster)
+  createBrightnessAnimation('.logo2 img[alt="logo2-part2"]', 1.6, 1.2, 'power3.out');
   
-  // Apply golden glow animation to man3-part1 (stronger glow)
-  createGoldenGlowAnimation('.man3 img[alt="man3-part1"]', 25, 1.2, 'sine.inOut');
+  // Apply golden glow animation to man3-part1 (stronger glow, faster)
+  createGoldenGlowAnimation('.man3 img[alt="man3-part1"]', 25, 1.0, 'sine.inOut');
   
-  // Apply golden glow animation to man4-part1 (stronger glow)
-  createGoldenGlowAnimation('.man4 img[alt="man4-part1"]', 25, 2, 'sine.inOut');
+  // Apply golden glow animation to man4-part1 (stronger glow, faster)
+  createGoldenGlowAnimation('.man4 img[alt="man4-part1"]', 25, 1.6, 'sine.inOut');
   
-  // Apply scale animation to man3 (in sync with glow)
-  createScaleAnimation('.man3', 1.05, 1.2, 'sine.inOut');
+  // Apply scale animation to man3 (in sync with glow, faster)
+  createScaleAnimation('.man3', 1.05, 1.0, 'sine.inOut');
   
-  // Apply scale animation to man4 (in sync with glow)
-  createScaleAnimation('.man4', 1.05, 2, 'sine.inOut');
+  // Apply scale animation to man4 (in sync with glow, faster)
+  createScaleAnimation('.man4', 1.05, 1.6, 'sine.inOut');
+  
+  // Apply simple sway animation to man2 (-2° to +2° around left bottom, lowered 2%)
+  createSimpleSwayAnimation('.man2', 2, 1.5, 'sine.inOut');
 }
