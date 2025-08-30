@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { createSandstormEffect } from './sandstorm-effect.js';
 
 export function createSmoothFlyInAnimation(selector, delay = 0, duration = 1.5) {
   const element = document.querySelector(selector);
@@ -20,6 +21,24 @@ export function createSmoothFlyInAnimation(selector, delay = 0, duration = 1.5) 
       opacity: 1,
       x: 50, // End at orbital start position (radius)
       y: 0,
+      scale: 1,
+      duration: duration,
+      delay: delay,
+      ease: "power2.out"
+    });
+  }
+
+  // Special case for box2 elements - appear from greater distance
+  if (selector === '.man4' || selector === '.man2') {
+    gsap.set(element, {
+      opacity: 0,
+      x: 200, // Much further right for box2 elements
+      scale: 0.9
+    });
+
+    return gsap.to(element, {
+      opacity: 1,
+      x: 0,
       scale: 1,
       duration: duration,
       delay: delay,
@@ -86,16 +105,24 @@ export function createAllElementsSmoothAppear() {
   const box1Elements = ['.man3', '.man1'];
   box1Elements.forEach((selector, index) => {
     const animation = createSmoothFlyInAnimation(selector, 0, 0.8);
-    masterTimeline.add(animation, 0.8 + index * 0.1);
+    masterTimeline.add(animation, 0.5 + index * 0.1);
   });
 
   return masterTimeline;
 }
 
 export function initAppearAnimations() {
-  // Smooth appearance of ALL elements by blocks: box2 → box3 → box1
+  // Create appearance timeline
   const appearTimeline = createAllElementsSmoothAppear();
   
-  // Return the timeline so main.js can wait for completion
-  return appearTimeline;
+  // Create sandstorm effect overlaying the appearance
+  const sandstormTl = createSandstormEffect(1.7);
+  
+  // Combine both effects
+  const masterTimeline = gsap.timeline();
+  masterTimeline.add(sandstormTl, 0)           // Sandstorm starts first
+                .add(appearTimeline, 0);       // Elements appear simultaneously
+  
+  // Return the combined timeline
+  return masterTimeline;
 }
