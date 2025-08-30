@@ -170,13 +170,10 @@ export function createOrbitWithRandomFade(selector, radius = 30, orbitDuration =
     return null;
   }
 
-  // Set initial state
+  // Set initial state - don't reset position, keep where appearance animation left it
   gsap.set(element, { 
-    transformOrigin: "center center",
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    y: 0
+    transformOrigin: "center center"
+    // opacity, scale, x, y are already set by appearance animation
   });
 
   const masterTimeline = gsap.timeline({ repeat: -1 });
@@ -184,8 +181,8 @@ export function createOrbitWithRandomFade(selector, radius = 30, orbitDuration =
   // Orbit motion animation (smooth circular movement without rotation)
   const orbitTl = gsap.timeline({ repeat: -1 });
   
-  // Create ultra smooth circular motion with many points for fluid movement
-  // Start from the initial position
+  // Create ultra smooth circular motion with many points for fluid movement  
+  // Start from orbital start position (right side of circle)
   orbitTl.set(element, { x: radius, y: 0 });
   
   for (let i = 5; i <= 360; i += 5) {
@@ -244,9 +241,8 @@ export function createOrbitWithRandomFade(selector, radius = 30, orbitDuration =
   return masterTimeline;
 }
 
-export function initMan1Animations() {
-  // Apply orbit with random fade animation to man1 (bigger amplitude, faster)
-  createOrbitWithRandomFade('.man1', 50, 8);
+export function initImmediateAnimations() {
+  // Animations that start immediately with appearance
   
   // Apply red glow animation to man1-part1 (stronger red glow, faster)
   createRedGlowAnimation('.man1 img[alt="man1-part1"]', 35, 1.0, 'sine.inOut');
@@ -277,4 +273,11 @@ export function initMan1Animations() {
   
   // Apply simple sway animation to man2 (-2° to +2° around left bottom, lowered 2%)
   createSimpleSwayAnimation('.man2', 2, 1.5, 'sine.inOut');
+}
+
+export function initMan1Animations() {
+  // Animations that start after appearance is complete
+  
+  // Apply orbit with random fade animation to man1 (bigger amplitude, faster)
+  createOrbitWithRandomFade('.man1', 50, 8);
 }

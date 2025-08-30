@@ -1,6 +1,7 @@
 import { setupDevPanel } from './assets/js/dev-panel.js'
 import { getGameConfig, applyGameStyles } from './assets/js/config.js'
-import { initMan1Animations } from './assets/js/man1-animations.js'
+import { initMan1Animations, initImmediateAnimations } from './assets/js/man1-animations.js'
+import { initAppearAnimations } from './assets/js/appears-anim.js'
 
 // Prevent all zoom functionality
 function preventZoom() {
@@ -68,8 +69,20 @@ if (isDevelopment) {
   setupDevPanel(gameMode, updateGameMode, isDevelopment);
 }
 
-// Initialize animations
-initMan1Animations();
+// Initialize appear animations and immediate glow animations
+initAppearAnimations();
+initImmediateAnimations();
+
+// Initialize delayed animations (man1 orbit) AFTER appearance is complete
+const appearTimeline = initAppearAnimations();
+if (appearTimeline) {
+  appearTimeline.eventCallback("onComplete", () => {
+    initMan1Animations();
+  });
+} else {
+  // Fallback if timeline creation fails
+  setTimeout(initMan1Animations, 2000);
+}
 
 // Initialize zoom prevention
 preventZoom();
