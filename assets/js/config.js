@@ -33,7 +33,10 @@ export const gameConfig = {
   },
 
   characters: {
-    man1: './assets/images/man1.webp',
+    man1: {
+      part1: './assets/images/man1-part1.webp',
+      part2: './assets/images/man1-part2.webp'
+    },
     man2: './assets/images/man2.webp',
     man3: {
       part1: './assets/images/man3-part1.webp',

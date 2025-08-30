@@ -84,7 +84,16 @@
   position: relative;
 }
 
-.man1 img, .man2 img {
+.man1 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.man2 img {
   width: 100%;
   height: 100%;
   object-fit: contain;

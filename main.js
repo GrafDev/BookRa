@@ -1,5 +1,6 @@
 import { setupDevPanel } from './assets/js/dev-panel.js'
 import { getGameConfig, applyGameStyles } from './assets/js/config.js'
+import { initMan1Animations } from './assets/js/man1-animations.js'
 
 const isDevelopment = import.meta.env.DEV;
 let gameMode = localStorage.getItem('bookra_gameMode') || 'click';
@@ -37,3 +38,6 @@ const gameType = initializeGameType();
 if (isDevelopment) {
   setupDevPanel(gameMode, updateGameMode, isDevelopment);
 }
+
+// Initialize animations
+initMan1Animations();
