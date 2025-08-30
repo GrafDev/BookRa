@@ -19,7 +19,6 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  touch-action: manipulation;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
