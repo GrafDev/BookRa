@@ -1,5 +1,6 @@
 /* Main styles entry point */
 @import url('./reset.css');
+@import url('./preloader.css');
 @import url('./background.css');
 @import url('./layout.css');
 @import url('./cards.css');

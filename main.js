@@ -4,6 +4,7 @@ import { initMan1Animations, initImmediateAnimations } from './assets/js/man1-an
 import { initAppearAnimations } from './assets/js/appears-anim.js'
 import { Cards } from './assets/js/cards.js'
 import { loadGameContainers } from './assets/js/game-templates.js'
+import { preloader } from './assets/js/preloader.js'
 
 // Prevent all zoom functionality
 function preventZoom() {
@@ -68,32 +69,42 @@ function initializeGameType() {
   return gameType;
 }
 
-const gameType = initializeGameType();
+// Initialize app after preloader
+async function initApp() {
+  // Run preloader first
+  await preloader.load();
+  
+  // Initialize game after preloader completes
+  const gameType = initializeGameType();
 
-if (isDevelopment) {
-  setupDevPanel(gameMode, updateGameMode, isDevelopment);
+  if (isDevelopment) {
+    setupDevPanel(gameMode, updateGameMode, isDevelopment);
+  }
+
+  // Initialize game logic based on type
+  let gameInstance = null;
+  if (gameType === 'scratch') {
+    gameInstance = new Cards();
+  }
+
+  // Initialize appear animations and immediate glow animations
+  initAppearAnimations();
+  initImmediateAnimations();
+
+  // Initialize delayed animations (man1 orbit) AFTER appearance is complete
+  const appearTimeline = initAppearAnimations();
+  if (appearTimeline) {
+    appearTimeline.eventCallback("onComplete", () => {
+      initMan1Animations();
+    });
+  } else {
+    // Fallback if timeline creation fails
+    setTimeout(initMan1Animations, 2000);
+  }
+
+  // Initialize zoom prevention
+  preventZoom();
 }
 
-// Initialize game logic based on type
-let gameInstance = null;
-if (gameType === 'scratch') {
-  gameInstance = new Cards();
-}
-
-// Initialize appear animations and immediate glow animations
-initAppearAnimations();
-initImmediateAnimations();
-
-// Initialize delayed animations (man1 orbit) AFTER appearance is complete
-const appearTimeline = initAppearAnimations();
-if (appearTimeline) {
-  appearTimeline.eventCallback("onComplete", () => {
-    initMan1Animations();
-  });
-} else {
-  // Fallback if timeline creation fails
-  setTimeout(initMan1Animations, 2000);
-}
-
-// Initialize zoom prevention
-preventZoom();
+// Start the app
+initApp();

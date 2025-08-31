@@ -1,27 +1,28 @@
 // Game container templates
+import { images } from './images-loader.js'
 
 export function createCardsContainer() {
   return `<div class="cards-container">
     <div class="cards-top-section">
       <div class="card-block">
-        <img src="./assets/images/back-cart.webp" alt="Card Background" class="card-bg">
-        <img src="./assets/images/first-cart.png" alt="First Card" class="card-prize">
-        <img src="./assets/images/blanket-cart.webp" alt="Blanket Card" class="card-blanket">
-        <img src="./assets/images/border-cart.webp" alt="Card Border" class="card-border">
+        <img src="${images.backCart}" alt="Card Background" class="card-bg">
+        <img src="${images.firstCart}" alt="First Card" class="card-prize">
+        <img src="${images.blanketCart}" alt="Blanket Card" class="card-blanket">
+        <img src="${images.borderCart}" alt="Card Border" class="card-border">
       </div>
       <div class="card-block">
-        <img src="./assets/images/back-cart.webp" alt="Card Background" class="card-bg">
-        <img src="./assets/images/second-cart.png" alt="Second Card" class="card-prize">
-        <img src="./assets/images/blanket-cart.webp" alt="Blanket Card" class="card-blanket">
-        <img src="./assets/images/border-cart.webp" alt="Card Border" class="card-border">
+        <img src="${images.backCart}" alt="Card Background" class="card-bg">
+        <img src="${images.secondCart}" alt="Second Card" class="card-prize">
+        <img src="${images.blanketCart}" alt="Blanket Card" class="card-blanket">
+        <img src="${images.borderCart}" alt="Card Border" class="card-border">
       </div>
     </div>
     <div class="cards-bottom-section" style="margin-top: 6%;">
       <div class="card-block">
-        <img src="./assets/images/back-cart.webp" alt="Card Background" class="card-bg">
-        <img src="./assets/images/third-cart.png" alt="Third Card" class="card-prize">
-        <img src="./assets/images/blanket-cart.webp" alt="Blanket Card" class="card-blanket">
-        <img src="./assets/images/border-cart.webp" alt="Card Border" class="card-border">
+        <img src="${images.backCart}" alt="Card Background" class="card-bg">
+        <img src="${images.thirdCart}" alt="Third Card" class="card-prize">
+        <img src="${images.blanketCart}" alt="Blanket Card" class="card-blanket">
+        <img src="${images.borderCart}" alt="Card Border" class="card-border">
       </div>
     </div>
   </div>`;
@@ -43,8 +44,8 @@ export function createWheelContainer() {
       <div class="wheel-part6"></div>
     </div>
     <div class="arrow">
-      <img src="./assets/images/arrow-part1.png" alt="Arrow Part 1" class="arrow-part1">
-      <img src="./assets/images/arrow-part2.png" alt="Arrow Part 2" class="arrow-part2">
+      <img src="${images.arrowPart1}" alt="Arrow Part 1" class="arrow-part1">
+      <img src="${images.arrowPart2}" alt="Arrow Part 2" class="arrow-part2">
     </div>
   </div>`;
 }
