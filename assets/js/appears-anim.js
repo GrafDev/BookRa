@@ -87,6 +87,26 @@ export function createDesertWindSequentialAppear(selectors, baseDelay = 0.2, dur
 export function createAllElementsSmoothAppear() {
   const masterTimeline = gsap.timeline();
   
+  // Background saturation animation
+  const bgDesktop = document.querySelector('.bg-desktop');
+  const bgMobile = document.querySelector('.bg-mobile');
+  
+  if (bgDesktop) {
+    masterTimeline.to(bgDesktop, {
+      filter: 'saturate(1)',
+      duration: 2,
+      ease: "power2.out"
+    }, 0);
+  }
+  
+  if (bgMobile) {
+    masterTimeline.to(bgMobile, {
+      filter: 'saturate(1)',
+      duration: 2,
+      ease: "power2.out"
+    }, 0);
+  }
+  
   // box2 elements (right side)
   const box2Elements = ['.man4', '.man2'];
   box2Elements.forEach((selector, index) => {

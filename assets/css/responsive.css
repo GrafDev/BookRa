@@ -117,3 +117,10 @@
     width: 50dvw;
   }
 }
+
+/* Desktop landscape - game to bottom */
+@media (hover: hover) and (pointer: fine) and (orientation: landscape) {
+  .logo1,.logo2, .title {
+    min-height: 8dvh;
+  }
+}

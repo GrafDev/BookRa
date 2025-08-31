@@ -13,9 +13,9 @@ export function createSandstormEffect(duration = 1.7) {
     background: linear-gradient(90deg, 
       transparent 0%,
       transparent 20%,
-      rgba(101, 67, 33, 0.7) 30%, 
-      rgba(139, 69, 19, 0.5) 50%,
-      rgba(160, 82, 45, 0.3) 70%,
+      rgba(101, 67, 33, 0.2) 30%, 
+      rgba(139, 69, 19, 0.15) 50%,
+      rgba(160, 82, 45, 0.1) 70%,
       transparent 90%,
       transparent 100%);
     pointer-events: none;
