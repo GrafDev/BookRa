@@ -3,6 +3,7 @@ import { getGameConfig, applyGameStyles } from './assets/js/config.js'
 import { initMan1Animations, initImmediateAnimations } from './assets/js/man1-animations.js'
 import { initAppearAnimations } from './assets/js/appears-anim.js'
 import { Cards } from './assets/js/cards.js'
+import { loadGameContainers } from './assets/js/game-templates.js'
 
 // Prevent all zoom functionality
 function preventZoom() {
@@ -44,6 +45,9 @@ function updateGameMode() {
 // Main app initialization
 function initializeGameType() {
   let gameType = import.meta.env.VITE_GAME_TYPE || 'scratch';
+  
+  // Load game containers first
+  loadGameContainers();
   
   // Check dev panel state if in development
   if (isDevelopment) {

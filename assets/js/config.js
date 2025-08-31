@@ -69,5 +69,22 @@ export function applyGameStyles(gameType = 'scratch') {
   if (gameElement) {
     gameElement.setAttribute('data-game-type', gameType);
     gameElement.style.backgroundColor = config.backgroundColor;
+    
+    // In development mode, show/hide containers for dev panel switching
+    const isDevelopment = import.meta.env.DEV;
+    if (isDevelopment) {
+      const cardsContainer = document.querySelector('.cards-container');
+      const wheelContainer = document.querySelector('.wheel-container');
+      
+      if (cardsContainer && wheelContainer) {
+        if (gameType === 'wheel') {
+          cardsContainer.style.display = 'none';
+          wheelContainer.style.display = 'block';
+        } else {
+          cardsContainer.style.display = 'block';
+          wheelContainer.style.display = 'none';
+        }
+      }
+    }
   }
 }
