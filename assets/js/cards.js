@@ -1,8 +1,12 @@
+import { ImageEraser } from './eraser-effect.js';
+
 export class Cards {
   constructor() {
     this.cardBlocks = [];
+    this.erasers = new Map();
     this.revealedCount = 0;
-    this.prizes = ['card-prize1.png', 'card-prize2.png', 'card-prize3.png'];
+    this.clickCount = 0;
+    this.cardImages = ['./assets/images/first-cart.png', './assets/images/second-cart.png', './assets/images/third-cart.png'];
     this.init();
   }
 
@@ -14,44 +18,80 @@ export class Cards {
 
   setupEventListeners() {
     this.cardBlocks.forEach((cardBlock, index) => {
-      cardBlock.addEventListener('click', () => this.handleCardClick(cardBlock, index));
+      const handleEvent = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.handleCardClick(cardBlock, index);
+      };
+      
+      cardBlock.addEventListener('click', handleEvent);
+      cardBlock.addEventListener('touchend', handleEvent);
+      
+      cardBlock.style.cursor = 'pointer';
+      cardBlock.style.touchAction = 'manipulation';
     });
   }
 
   handleCardClick(cardBlock, index) {
-    if (cardBlock.classList.contains('revealed')) return;
+    if (cardBlock.classList.contains('revealed') || this.erasers.has(cardBlock)) return;
 
     const prize = cardBlock.querySelector('.card-prize');
     const blanket = cardBlock.querySelector('.card-blanket');
 
+    if (!prize || !blanket) {
+      console.warn('Card images not found');
+      return;
+    }
+
+    // Change the underlying image and show with fade
+    const imageIndex = this.clickCount % this.cardImages.length;
+    prize.src = this.cardImages[imageIndex];
+    
     // Show prize with fade effect
-    prize.classList.add('revealed');
+    setTimeout(() => {
+      prize.style.opacity = '1';
+    }, 100);
     
-    // Start erasing blanket
-    this.eraseBlanket(blanket);
+    this.clickCount++;
+
+    // Create and start eraser
+    const eraser = new ImageEraser(blanket, {
+      eraserSize: 15
+    });
     
-    // Mark as revealed
+    this.erasers.set(cardBlock, eraser);
+    
+    // Auto erase 70% with animation
+    eraser.autoErase(70, 1000).then(percentage => {
+      this.onCardRevealed(cardBlock, percentage);
+    });
+    
+    // Add visual feedback
+    cardBlock.classList.add('card-processing');
+  }
+
+  onCardRevealed(cardBlock, percentage) {
+    // Remove processing state
+    cardBlock.classList.remove('card-processing');
+    
+    // Add revealed state
     cardBlock.classList.add('revealed');
     this.revealedCount++;
+    
+    // Disable further clicks
+    cardBlock.style.cursor = 'default';
+    cardBlock.style.pointerEvents = 'none';
 
     // Check if all cards revealed
     if (this.revealedCount === 3) {
-      setTimeout(() => this.onAllCardsRevealed(), 1500);
+      setTimeout(() => this.onAllCardsRevealed(), 2000);
     }
 
     // Dispatch custom event
     const event = new CustomEvent('cardRevealed', {
-      detail: { cardBlock, index, revealedCount: this.revealedCount }
+      detail: { cardBlock, percentage, revealedCount: this.revealedCount }
     });
     document.dispatchEvent(event);
-  }
-
-  eraseBlanket(blanket) {
-    // Simple fade out effect for now
-    setTimeout(() => {
-      blanket.style.transition = 'opacity 1s ease';
-      blanket.style.opacity = '0';
-    }, 500);
   }
 
   animateAppearance() {

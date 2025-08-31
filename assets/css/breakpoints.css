@@ -112,6 +112,9 @@
   .box3 {
     width: 55dvw;
   }
+  .logo1, .logo2 {
+    min-height: 60px;
+  }
 }
 
 /* Desktop */
