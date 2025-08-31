@@ -7,9 +7,7 @@
   }
   
   .box3 {
-    max-width: 50dvw;
-
-    
+width: 55dvw;
   }
   .logo1, .title, .logo2{
     min-height: 30px;
@@ -63,7 +61,7 @@
   }
   
   .box3-up {
-    flex: 1;
+    height: 20dvh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -85,6 +83,11 @@
   }
   
   .box3-down {
+    height: 10dvh;
+  }
+  
+  .game {
+    aspect-ratio: unset;
     flex: 1;
   }
 }
