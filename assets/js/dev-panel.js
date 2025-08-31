@@ -58,6 +58,10 @@ export function setupDevPanel(gameMode, updateGameMode, isDevelopment) {
           <input type="checkbox" id="showBorders"> Показать рамки
         </label>
       </div>
+      <div class="dev-section">
+        <h4>Device Info</h4>
+        <div id="deviceInfo" style="font-size: 12px; color: #ccc;"></div>
+      </div>
     </div>
     <button class="dev-toggle" id="devToggle">DEV</button>
   `;
@@ -92,6 +96,56 @@ export function setupDevPanel(gameMode, updateGameMode, isDevelopment) {
     showBordersCheckbox.checked = true;
     document.body.classList.add('dev-borders');
   }
+
+  // Update device info
+  function updateDeviceInfo() {
+    const deviceInfoEl = document.getElementById('deviceInfo');
+    if (!deviceInfoEl) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const aspectRatio = width / height;
+    const orientation = width > height ? 'landscape' : 'portrait';
+    
+    // Device type detection using existing breakpoints
+    const isNarrowPortrait = window.matchMedia('(max-aspect-ratio: 1/1) and (max-width: 767px)').matches;
+    const isTabletPortrait = window.matchMedia('(max-aspect-ratio: 1/1) and (min-width: 768px)').matches;
+    const isLandscapeLow = window.matchMedia('(max-height: 500px) and (orientation: landscape)').matches;
+    
+    // Use same logic as CSS breakpoints
+    let deviceType = 'desktop';
+    
+    // Mobile: narrow portrait or landscape with small height
+    if (aspectRatio < 0.75 || (aspectRatio > 1.5 && Math.min(width, height) <= 500)) {
+      deviceType = 'mobile';
+    }
+    // Tablet: portrait 768+ OR landscape 940-1399
+    else if ((orientation === 'portrait' && width >= 768) || 
+             (orientation === 'landscape' && width >= 940 && width < 1400)) {
+      deviceType = 'tablet';
+    }
+    // Desktop: width >= 1400 OR everything else not caught above
+    else if (width >= 1400) {
+      deviceType = 'desktop';
+    }
+    // Mid-range devices that don't fit mobile/tablet - also desktop
+    else {
+      deviceType = 'desktop';
+    }
+    
+    deviceInfoEl.innerHTML = `
+      <div><strong>${deviceType.toUpperCase()}</strong> | ${orientation.toUpperCase()}</div>
+      <div>${width}x${height} | ratio: ${aspectRatio.toFixed(2)}</div>
+      <div>width <= 767: ${width <= 767}</div>
+      <div>Portrait narrow: ${isNarrowPortrait}</div>
+      <div>Tablet portrait: ${isTabletPortrait}</div>
+      <div>Landscape low: ${isLandscapeLow}</div>
+    `;
+  }
+
+  // Update device info initially and on resize
+  updateDeviceInfo();
+  window.addEventListener('resize', updateDeviceInfo);
 
   devToggle.addEventListener('click', () => {
     devMode = !devMode;

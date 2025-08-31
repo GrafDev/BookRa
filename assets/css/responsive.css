@@ -7,10 +7,10 @@
   }
   
   .box3 {
-width: 55dvw;
+    width: 60dvw;
   }
   .logo1, .title, .logo2{
-    min-height: 30px;
+    min-height: 35px;
   }
   .title {
     height: 30px;
@@ -18,78 +18,10 @@ width: 55dvw;
 }
 
 
-/* Narrow screens: less than 3:4 aspect ratio */
-@media (max-aspect-ratio: 3/4) and (max-width: 767px) {
-  .main-container {
-    padding: 5px;
-  }
-  
-  .box3 {
-    width: 50dvw;
-  }
-}
 
 /* Portrait orientation */
 @media (max-aspect-ratio: 1/1) {
-    .logo1, .logo2{
-      width:70%;
-    }
-    
-    .title, .title-mobile{
-      width: 100%;
-    }
-    
-    .title {
-      display: none;
-    }
-    
-    .title-mobile {
-      display: block;
-    }
-    
-  .medias {
-    width: 90dvw;
-    height: 80dvh;
-  }
-  .box1, .box2 {
-    width: 50%;
-  }
-  .box3{
-    width:95dvw;
-    justify-content: space-between;
-    overflow: visible;
-  }
-  
-  .box3-up {
-    height: 20dvh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    overflow: visible;
-  }
-  
-  .box3-up .logo1,
-  .box3-up .title,
-  .box3-up .title-mobile,
-  .box3-up .logo2 {
-    flex: 1;
-  }
-  
-   .box3-up .title img,
-  .box3-up .title-mobile img {
-    object-fit: contain;
-  }
-  
-  .box3-down {
-    height: 10dvh;
-  }
-  
-  .game {
-    aspect-ratio: unset;
-    flex: 1;
-  }
+   
 }
 
 /* Tablets in portrait - use desktop title */
@@ -106,20 +38,12 @@ width: 55dvw;
 
 /* Tablets portrait */
 @media (min-width: 768px) and (orientation: portrait) {
-  .box3 {
-    width: 80dvw;
-  }
+
 }
 
 /* Tablets in landscape - wider box3 */
 @media (min-width: 940px) and (max-width: 1024px) and (orientation: landscape) {
-  .main-container {
-    padding: 5px;
-  }
-  
-  .box3 {
-    max-width: 50dvw;
-  }
+
 }
 
 /* Desktop landscape - game to bottom */
