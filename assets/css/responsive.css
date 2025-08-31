@@ -7,7 +7,8 @@
   }
   
   .box3 {
-    width: 50dvw;
+    max-width: 50dvw;
+
     
   }
   .logo1, .title, .logo2{
@@ -114,13 +115,17 @@
   }
   
   .box3 {
-    width: 50dvw;
+    max-width: 50dvw;
   }
 }
 
 /* Desktop landscape - game to bottom */
-@media (hover: hover) and (pointer: fine) and (orientation: landscape) {
-  .logo1,.logo2, .title {
+@media (min-width: 1400px) and (orientation: landscape) {
+  .logo1, .logo2, .title {
     min-height: 8dvh;
+  }
+  
+  .game {
+    margin-top: auto;
   }
 }
