@@ -61,13 +61,15 @@
     left: -25%;
   }
   
-  .man2 {
-    bottom: 0;
-    top: auto;
-  }
-  
   .man2 img {
     left: 40%;
+  }
+  
+  body.scratch .man2 {
+    position: absolute !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 10% !important;
   }
 
   .box3{
