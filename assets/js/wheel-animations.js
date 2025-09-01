@@ -91,9 +91,7 @@ export class WheelAnimations {
         
         // Set initial states
         tl.set('.wheel-wrapper', {
-            opacity: 0,
-            scale: 0.2,
-            rotation: -90
+            opacity: 0
         })
         .set(['.wheel-part5', '.wheel-part6'], {
             opacity: 0,
@@ -110,11 +108,9 @@ export class WheelAnimations {
         
         // Entrance animations
         tl.to('.wheel-wrapper', {
-            duration: 1.0,
-            scale: 1,
-            rotation: 0,
+            duration: 1.5,
             opacity: 1,
-            ease: "back.out(1.5)"
+            ease: "power2.out"
         }, 0)
         .to(['.wheel-part5', '.wheel-part6'], {
             duration: 0.6,
@@ -136,6 +132,15 @@ export class WheelAnimations {
             this.part3_1GoldFlash();
             this.part6GoldFlash();
         }, [], 1.2);
+
+        // Center all elements after entrance
+        tl.call(() => {
+            this.centerWheelElements();
+            // Add orientation change listener
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => this.centerWheelElements(), 100);
+            });
+        }, [], 1.5);
         
         return tl;
     }
@@ -354,5 +359,48 @@ export class WheelAnimations {
     static part6GoldFlash() {
         // Use existing brightness animation function for wheel-part6 - same settings as part2
         createBrightnessAnimation('.wheel-part6 img', 1.5, 0.5, 'sine.inOut');
+    }
+
+    static centerWheelElements() {
+        const wheelWrapper = document.querySelector('.wheel-wrapper');
+        const arrow = document.querySelector('.arrow');
+        const part4 = document.querySelector('.wheel-part4');
+        const centerButton = document.querySelector('.wheel-center-button');
+
+        if (wheelWrapper) {
+            gsap.set(wheelWrapper, {
+                top: '50%',
+                left: '50%',
+                x: '-50%',
+                y: '-50%'
+            });
+        }
+
+        if (arrow) {
+            gsap.set(arrow, {
+                top: '50%',
+                left: '10%',
+                x: '-50%',
+                y: '-50%'
+            });
+        }
+
+        if (part4) {
+            gsap.set(part4, {
+                top: '50%',
+                left: '50%',
+                x: '-50%',
+                y: '-50%'
+            });
+        }
+
+        if (centerButton) {
+            gsap.set(centerButton, {
+                top: '50%',
+                left: '50%',
+                x: '-50%',
+                y: '-50%'
+            });
+        }
     }
 }
