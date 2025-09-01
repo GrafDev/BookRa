@@ -7,7 +7,7 @@ export class WheelAnimations {
         const wheelWrapper = document.querySelector('.wheel-wrapper');
         if (!wheelWrapper) {
             console.warn('Wheel wrapper not found');
-            return Promise.resolve();
+            return Promise.resolve(currentRotation);
         }
 
         return new Promise((resolve) => {
@@ -28,25 +28,27 @@ export class WheelAnimations {
             // First flash immediately
             this.arrowFlash();
             
-            // Two-stage animation: fast spin + spring settle
+            // Two-stage animation: animate CSS variable instead of transform
             const spinTimeline = gsap.timeline();
             
             // First stage - fast spin with rotation tracking
             spinTimeline.to(wheelWrapper, {
-                rotation: totalRotationWithOvershoot,
+                "--rotation": totalRotationWithOvershoot + "deg",
                 duration: 3.5 + Math.random() * 0.5,
                 ease: "power2.out",
                 onUpdate: function() {
-                    WheelAnimations.checkRotationForFlash(gsap.getProperty(this.targets()[0], "rotation"));
+                    const currentRotationValue = parseFloat(gsap.getProperty(this.targets()[0], "--rotation")) || 0;
+                    WheelAnimations.checkRotationForFlash(currentRotationValue);
                 }
             })
             // Second stage - spring settle
             .to(wheelWrapper, {
-                rotation: finalRotation,
+                "--rotation": finalRotation + "deg",
                 duration: 0.8,
                 ease: "elastic.out(2, 0.3)",
                 onUpdate: function() {
-                    WheelAnimations.checkRotationForFlash(gsap.getProperty(this.targets()[0], "rotation"));
+                    const currentRotationValue = parseFloat(gsap.getProperty(this.targets()[0], "--rotation")) || 0;
+                    WheelAnimations.checkRotationForFlash(currentRotationValue);
                 },
                 onComplete: () => {
                     // Stop flashing and trigger celebration immediately with part4 show
@@ -367,14 +369,7 @@ export class WheelAnimations {
         const part4 = document.querySelector('.wheel-part4');
         const centerButton = document.querySelector('.wheel-center-button');
 
-        if (wheelWrapper) {
-            gsap.set(wheelWrapper, {
-                top: '50%',
-                left: '50%',
-                x: '-50%',
-                y: '-50%'
-            });
-        }
+        // Positioning now handled by CSS, no GSAP needed
 
         if (arrow) {
             gsap.set(arrow, {

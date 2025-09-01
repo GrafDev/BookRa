@@ -90,11 +90,10 @@ async function initApp() {
     gameInstance = new Wheel();
   }
 
-  // Initialize appear animations and immediate glow animations
-  initAppearAnimations();
+  // Initialize immediate glow animations
   initImmediateAnimations();
 
-  // Initialize delayed animations (man1 orbit) AFTER appearance is complete
+  // Initialize appear animations and delayed animations (man1 orbit) AFTER appearance is complete
   const appearTimeline = initAppearAnimations();
   if (appearTimeline) {
     appearTimeline.eventCallback("onComplete", () => {

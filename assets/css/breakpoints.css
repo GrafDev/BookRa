@@ -95,6 +95,10 @@
   .game[data-game-type="wheel"] .wheel-wrapper {
     width: 99%;
   }
+  
+  .game[data-game-type="wheel"] .arrow {
+    left: 5% !important;
+  }
 }
 
 /* Tablet portrait */
