@@ -3,6 +3,7 @@ import { getGameConfig, applyGameStyles } from './assets/js/config.js'
 import { initMan1Animations, initImmediateAnimations } from './assets/js/character-animations.js'
 import { initAppearAnimations } from './assets/js/appears-anim.js'
 import { Cards } from './assets/js/cards.js'
+import { Wheel } from './assets/js/wheel.js'
 import { loadGameContainers } from './assets/js/game-templates.js'
 import { preloader } from './assets/js/preloader.js'
 
@@ -85,6 +86,8 @@ async function initApp() {
   let gameInstance = null;
   if (gameType === 'scratch') {
     gameInstance = new Cards();
+  } else if (gameType === 'wheel') {
+    gameInstance = new Wheel();
   }
 
   // Initialize appear animations and immediate glow animations
