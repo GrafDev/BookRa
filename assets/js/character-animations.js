@@ -309,6 +309,7 @@ export function initImmediateAnimations() {
   createYAxisSwayAnimation('.man4', 10, 1.2, 'sine.inOut');
 }
 
+
 export function initMan1Animations() {
   // Animations that start after appearance is complete
   

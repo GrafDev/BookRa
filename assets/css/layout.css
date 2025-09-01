@@ -31,7 +31,7 @@
   width: 100%;
 
   aspect-ratio: 1 / 1;
-  background-color: var(--game-bg-color, rgba(34, 197, 94, 0.3));
+  background-color: var(--game-bg-color, transparent);
 }
 
 .medias {

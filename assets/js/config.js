@@ -2,7 +2,7 @@ export const gameConfig = {
   gameTypes: {
     scratch: {
       name: 'scratch',
-      backgroundColor: 'rgba(34, 197, 94, 0.3)', // green-500 with opacity
+      backgroundColor: 'transparent',
       images: {
         logo1: {
           part1: './assets/images/logo1-part1.png',
@@ -17,7 +17,7 @@ export const gameConfig = {
     },
     wheel: {
       name: 'wheel',
-      backgroundColor: 'rgba(147, 51, 234, 0.3)', // purple-600 with opacity
+      backgroundColor: 'transparent',
       images: {
         logo1: {
           part1: './assets/images/logo1-part1.png',

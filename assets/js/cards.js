@@ -8,6 +8,9 @@ export class Cards {
     this.clickCount = 0;
     this.cardImages = ['./assets/images/first-cart.png', './assets/images/second-cart.png', './assets/images/third-cart.png'];
     this.init();
+    
+    // Start sequential glow immediately - будет ждать пока карточки появятся
+    this.startSequentialGlow();
   }
 
   init() {
@@ -108,6 +111,8 @@ export class Cards {
         card.classList.add('visible');
       }, 600 + (index * 200));
     });
+
+
   }
 
   onAllCardsRevealed() {
@@ -137,5 +142,39 @@ export class Cards {
     
     // Restart animation
     setTimeout(() => this.animateAppearance(), 100);
+  }
+
+  // Start sequential glow animation for cards
+  startSequentialGlow() {
+    setTimeout(() => {
+      const cardBlocks = document.querySelectorAll('.card-block');
+      
+      // Рандомное мигание карточек темно-красным светом
+      let lastIndex = -1;
+      
+      const glowNext = () => {
+        // Убрать свечение со всех карточек
+        cardBlocks.forEach(card => {
+          card.style.boxShadow = 'none';
+        });
+        
+        // Выбрать рандомную карточку (но не ту же что была)
+        let randomIndex;
+        do {
+          randomIndex = Math.floor(Math.random() * cardBlocks.length);
+        } while (randomIndex === lastIndex && cardBlocks.length > 1);
+        
+        // Добавить очень темно-красное свечение к выбранной карточке
+        if (cardBlocks[randomIndex]) {
+          cardBlocks[randomIndex].style.boxShadow = '0 0 20px rgba(80, 0, 0, 1), 0 0 30px rgba(80, 0, 0, 0.8)';
+        }
+        
+        lastIndex = randomIndex;
+      };
+      
+      // Запуск мигания каждые 1.2 секунды
+      setInterval(glowNext, 1200);
+      glowNext(); // первое мигание сразу
+    }, 3000);
   }
 }
