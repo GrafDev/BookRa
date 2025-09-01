@@ -310,15 +310,37 @@ export function initImmediateAnimations() {
 }
 
 
+let man1OrbitAnimation = null;
+
+function checkAndToggleMan1Animation() {
+  const isMobilePortrait = window.innerWidth <= 767 && window.innerHeight > window.innerWidth;
+  
+  if (!isMobilePortrait && !man1OrbitAnimation) {
+    // Start animation if not in mobile portrait and not already running
+    man1OrbitAnimation = createOrbitWithRandomFade('.man1', 50, 5);
+  } else if (isMobilePortrait && man1OrbitAnimation) {
+    // Stop animation if in mobile portrait and running
+    man1OrbitAnimation.kill();
+    man1OrbitAnimation = null;
+    // Reset man1 position
+    const man1 = document.querySelector('.man1');
+    if (man1) {
+      gsap.set(man1, { x: 0, y: 0, opacity: 1, scale: 1 });
+    }
+  }
+}
+
 export function initMan1Animations() {
   // Animations that start after appearance is complete
   
-  // Check if mobile device - skip orbit animation on mobile
-  const isMobile = window.innerWidth <= 767 || 
-                   (window.innerHeight <= 500 && window.innerWidth / window.innerHeight > 1.5);
+  // Initial check
+  checkAndToggleMan1Animation();
   
-  if (!isMobile) {
-    // Apply orbit with random fade animation to man1 (bigger amplitude, faster)
-    createOrbitWithRandomFade('.man1', 50, 5);
-  }
+  // Listen for orientation changes
+  window.addEventListener('orientationchange', () => {
+    setTimeout(checkAndToggleMan1Animation, 100);
+  });
+  
+  // Listen for resize events
+  window.addEventListener('resize', checkAndToggleMan1Animation);
 }

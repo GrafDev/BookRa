@@ -66,6 +66,10 @@ export function applyGameStyles(gameType = 'scratch') {
   const config = getGameConfig(gameType);
   const gameElement = document.querySelector('.game');
   
+  // Add game type class to body
+  document.body.className = document.body.className.replace(/\b(scratch|wheel)\b/g, '').trim();
+  document.body.classList.add(gameType);
+  
   if (gameElement) {
     gameElement.setAttribute('data-game-type', gameType);
     gameElement.style.backgroundColor = config.backgroundColor;

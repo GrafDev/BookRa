@@ -15,6 +15,7 @@
   --rotation: 0deg;
   transform: translate(-50%, -50%) rotate(var(--rotation));
   transform-origin: center center;
+  z-index: 1 !important;
 }
 
 .wheel-wrapper > div {
