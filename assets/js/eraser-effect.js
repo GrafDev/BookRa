@@ -1,4 +1,6 @@
 // Eraser effect for PNG images
+import { images } from './images-loader.js'
+
 export class ImageEraser {
   constructor(imageElement, options = {}) {
     this.image = imageElement;
@@ -63,7 +65,7 @@ export class ImageEraser {
     img.onerror = () => {
       console.error('Failed to load eraser texture');
     };
-    img.src = './assets/images/scratch.png';
+    img.src = images.scratch;
   }
   
   drawImageOnCanvas() {

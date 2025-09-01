@@ -17,7 +17,7 @@ export function createCardsContainer() {
         <img src="${images.borderCart}" alt="Card Border" class="card-border">
       </div>
     </div>
-    <div class="cards-bottom-section" style="margin-top: 6%;">
+    <div class="cards-bottom-section">
       <div class="card-block">
         <img src="${images.backCart}" alt="Card Background" class="card-bg">
         <img src="${images.thirdCart}" alt="Third Card" class="card-prize">
@@ -70,7 +70,9 @@ export function loadGameContainers() {
         cardsContainer.style.display = 'none';
         wheelContainer.style.display = 'block';
       } else {
-        cardsContainer.style.display = 'block';
+        cardsContainer.style.display = 'flex';
+        cardsContainer.style.flexDirection = 'column';
+        cardsContainer.style.gap = '6%';
         wheelContainer.style.display = 'none';
       }
     }

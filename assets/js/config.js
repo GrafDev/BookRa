@@ -81,7 +81,9 @@ export function applyGameStyles(gameType = 'scratch') {
           cardsContainer.style.display = 'none';
           wheelContainer.style.display = 'block';
         } else {
-          cardsContainer.style.display = 'block';
+          cardsContainer.style.display = 'flex';
+          cardsContainer.style.flexDirection = 'column';
+          cardsContainer.style.gap = '6%';
           wheelContainer.style.display = 'none';
         }
       }
