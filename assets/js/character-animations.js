@@ -231,7 +231,7 @@ export function createOrbitWithRandomFade(selector, radius = 30, orbitDuration =
   
   // Random fade and scale effects
   function addRandomEffect() {
-    const delay = gsap.utils.random(8, 15); // Random delay between 8-15 seconds (less frequent)
+    const delay = gsap.utils.random(4, 7.5); // Random delay between 4-7.5 seconds (в 2 раза чаще)
     
     gsap.delayedCall(delay, () => {
       const fadeTl = gsap.timeline();

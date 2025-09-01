@@ -156,18 +156,17 @@ export class Cards {
     setTimeout(() => this.animateAppearance(), 100);
   }
 
-  // Start sequential glow animation for cards
+  // Start sequential shake animation for cards
   startSequentialGlow() {
     setTimeout(() => {
       const cardBlocks = document.querySelectorAll('.card-block');
       
-      // Рандомное мигание карточек темно-красным светом
+      // Рандомное дрожание карточек (убрано темное свечение)
       let lastIndex = -1;
       
-      const glowNext = () => {
-        // Убрать свечение и дрожание со всех карточек
+      const shakeNext = () => {
+        // Остановить дрожание со всех карточек
         cardBlocks.forEach(card => {
-          card.style.boxShadow = 'none';
           gsap.killTweensOf(card); // Остановить все GSAP анимации
           gsap.set(card, { x: 0, y: 0 }); // Вернуть в исходное положение
           if (card.shakeInterval) {
@@ -182,12 +181,11 @@ export class Cards {
           randomIndex = Math.floor(Math.random() * cardBlocks.length);
         } while (randomIndex === lastIndex && cardBlocks.length > 1);
         
-        // Добавить очень темно-красное свечение к выбранной карточке
+        // Добавить быстрое дрожание к выбранной карточке
         if (cardBlocks[randomIndex]) {
           const card = cardBlocks[randomIndex];
-          card.style.boxShadow = '0 0 20px rgba(80, 0, 0, 1), 0 0 30px rgba(80, 0, 0, 0.8)';
           
-          // Добавить быстрое дрожание через setInterval - увеличиваем амплитуду
+          // Добавить быстрое дрожание через setInterval
           card.shakeInterval = setInterval(() => {
             const randomX = (Math.random() - 0.5) * 8; // от -4 до 4
             const randomY = (Math.random() - 0.5) * 8;
@@ -198,9 +196,9 @@ export class Cards {
         lastIndex = randomIndex;
       };
       
-      // Запуск мигания каждые 0.8 секунды (быстрее)
-      setInterval(glowNext, 800);
-      glowNext(); // первое мигание сразу
+      // Запуск дрожания каждые 0.8 секунды
+      setInterval(shakeNext, 800);
+      shakeNext(); // первое дрожание сразу
     }, 3000);
   }
 }

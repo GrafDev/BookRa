@@ -153,6 +153,10 @@
     height: 120%;
     left: -20%;
   }
+  
+  body.scratch .man2 img {
+    left: 10% !important;
+  }
 }
 
 /* Tablet portrait */
