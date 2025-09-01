@@ -1,0 +1,227 @@
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5vh;
+  z-index: 10000;
+  opacity: 0;
+  backdrop-filter: blur(5px);
+}
+
+.modal-shine-1,
+.modal-shine-2 {
+  position: absolute;
+  top: -75%;
+  left: -75%;
+  width: 250%;
+  height: 250%;
+  animation: rotate-shine 5s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.modal-shine-1 {
+  background: 
+    conic-gradient(from 0deg, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.05) 50deg, rgba(255, 255, 255, 0.1) 70deg, rgba(255, 255, 255, 0.25) 90deg, rgba(255, 255, 255, 0.1) 110deg, rgba(255, 255, 255, 0.05) 130deg, rgba(255, 255, 255, 0) 180deg, rgba(255, 255, 255, 0.04) 230deg, rgba(255, 255, 255, 0.08) 250deg, rgba(255, 255, 255, 0.2) 270deg, rgba(255, 255, 255, 0.08) 290deg, rgba(255, 255, 255, 0.04) 310deg, rgba(255, 255, 255, 0) 360deg);
+}
+
+.modal-shine-perpendicular {
+  background: 
+    conic-gradient(from 90deg, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.05) 50deg, rgba(255, 255, 255, 0.1) 70deg, rgba(255, 255, 255, 0.25) 90deg, rgba(255, 255, 255, 0.1) 110deg, rgba(255, 255, 255, 0.05) 130deg, rgba(255, 255, 255, 0) 180deg, rgba(255, 255, 255, 0.04) 230deg, rgba(255, 255, 255, 0.08) 250deg, rgba(255, 255, 255, 0.2) 270deg, rgba(255, 255, 255, 0.08) 290deg, rgba(255, 255, 255, 0.04) 310deg, rgba(255, 255, 255, 0) 360deg);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: var(--wheel-size);
+  height: auto;
+  max-width: 95vw;
+  max-height: 95vh;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.modal-main-block {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.29;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: calc(var(--wheel-size) * 1.0);
+    height: calc(var(--wheel-size) * 1.0 / 1.29);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .modal-content {
+    width: calc(var(--wheel-size) * 0.8);
+    height: calc(var(--wheel-size) * 0.8 / 1.29);
+  }
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-text-container {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  width: 70%;
+}
+
+.modal-text-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.modal-bg-left,
+.modal-bg-right {
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+}
+
+.modal-bg-left {
+  width: auto;
+  position: relative;
+  z-index: 12;
+  flex-shrink: 0;
+  margin-right: -3%;
+}
+
+.modal-bg-center {
+  height: 100%;
+  z-index: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  overflow: hidden;
+}
+
+.modal-bg-center img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+.modal-bg-right {
+  width: auto;
+  position: relative;
+  z-index: 12;
+  margin-left: -3%;
+}
+
+.modal-button-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  opacity: 0;
+  z-index: 20;
+}
+
+.modal-button {
+  width: 70%;
+  aspect-ratio: 5.7;
+  cursor: pointer;
+  z-index: 15;
+  text-decoration: none;
+  transition: transform 0.15s ease-out;
+  transform-origin: center;
+}
+
+/* Desktop - smaller button */
+@media (min-width: 1025px) {
+  .modal-button {
+    width: 70%;
+    aspect-ratio: 5.7;
+  }
+}
+
+.modal-button:hover {
+  transform: scale(1.05);
+}
+
+.modal-button:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease-in;
+}
+
+@media (max-width: 768px) {
+  .modal-button {
+    width: 70%;
+    aspect-ratio: 5.7;
+  }
+  
+  .modal-button-container {
+    height: auto;
+    margin-top: 15px;
+  }
+}
+
+/* Mobile landscape - move modal content higher */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .modal-overlay {
+    padding-top: 3vh;
+  }
+  
+  .modal-button-container {
+    margin-top: 5px;
+  }
+}
+
+.modal-btn-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@keyframes rotate-shine {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

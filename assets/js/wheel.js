@@ -1,10 +1,6 @@
 import { WheelAnimations } from './wheel-animations.js';
 import { gsap } from 'gsap';
-
-// Temporary modal function until modal-animations.js is created
-function showModal() {
-    console.log('Modal would show here');
-}
+import { showModal } from './modal-animations.js';
 
 export class Wheel {
     constructor() {

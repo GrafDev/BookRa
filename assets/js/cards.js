@@ -1,5 +1,6 @@
 import { ImageEraser } from './eraser-effect.js';
 import { gsap } from 'gsap';
+import { showModal } from './modal-animations.js';
 
 export class Cards {
   constructor() {
@@ -129,6 +130,11 @@ export class Cards {
 
   onAllCardsRevealed() {
     console.log('All cards revealed!');
+    // Show modal after delay
+    setTimeout(() => {
+      showModal();
+    }, 1000);
+    
     // Dispatch event for game completion
     const event = new CustomEvent('gameComplete', {
       detail: { type: 'cards' }
