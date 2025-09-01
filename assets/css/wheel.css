@@ -37,6 +37,7 @@
   left: 4% !important;
 }
 
+
 .wheel-part4 {
   position: absolute;
   top: 50%;
@@ -64,6 +65,10 @@
   z-index: 10;
   width: 15%;
   aspect-ratio: 1 / 1;
+}
+
+.wheel-part4 {
+  opacity: 0;
 }
 
 .wheel-part4 img {

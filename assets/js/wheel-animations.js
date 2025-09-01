@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { createBrightnessAnimation } from './character-animations.js';
 
 export class WheelAnimations {
     
@@ -128,6 +129,13 @@ export class WheelAnimations {
             opacity: 1,
             ease: "bounce.out"
         }, 0);
+        
+        // Start continuous brightness animations after entrance
+        tl.call(() => {
+            this.part2GoldFlash();
+            this.part3_1GoldFlash();
+            this.part6GoldFlash();
+        }, [], 1.2);
         
         return tl;
     }
@@ -298,8 +306,53 @@ export class WheelAnimations {
 
     static showPart4() {
         const part4 = document.querySelector('.wheel-part4');
-        if (part4) {
-            part4.classList.add('show');
-        }
+        if (!part4) return;
+
+        // GSAP timeline for part4 celebration animation
+        const tl = gsap.timeline();
+        
+        // Flicker show animation
+        tl.set(part4, { opacity: 0 })
+          .to(part4, { opacity: 1, duration: 0.1 })
+          .to(part4, { opacity: 0, duration: 0.1 })
+          .to(part4, { opacity: 1, duration: 0.1 })
+          .to(part4, { opacity: 0, duration: 0.1 })
+          .to(part4, { opacity: 1, duration: 0.1 })
+          .to(part4, { opacity: 0, duration: 0.1 })
+          .to(part4, { opacity: 1, duration: 0.1 })
+          .to(part4, { opacity: 0, duration: 0.1 })
+          .to(part4, { opacity: 1, duration: 0.1 })
+          .to(part4, { opacity: 1, duration: 0.1 });
+          
+        // Brightness pulse animation (starts after flicker)
+        tl.to(part4, {
+            filter: 'brightness(1.8)',
+            duration: 0.08,
+            repeat: 10,
+            yoyo: true,
+            ease: 'power2.inOut'
+        }, 1);
+        
+        // Fade out (starts after 1 second)
+        tl.to(part4, {
+            opacity: 0,
+            duration: 2,
+            ease: 'power2.out'
+        }, 1);
+    }
+
+    static part2GoldFlash() {
+        // Use existing brightness animation function for wheel-part2 - stronger and faster
+        createBrightnessAnimation('.wheel-part2 img', 1.5, 0.5, 'sine.inOut');
+    }
+
+    static part3_1GoldFlash() {
+        // Use existing brightness animation function for wheel-part3-1 - same settings as part2
+        createBrightnessAnimation('.wheel-part3-1 img', 1.5, 0.5, 'sine.inOut');
+    }
+
+    static part6GoldFlash() {
+        // Use existing brightness animation function for wheel-part6 - same settings as part2
+        createBrightnessAnimation('.wheel-part6 img', 1.5, 0.5, 'sine.inOut');
     }
 }
