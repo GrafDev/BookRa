@@ -28,6 +28,21 @@
   .box1, .box2 {
     width: 50%;
   }
+  
+  .man3 img, .man4 img {
+    width: 50%;
+    height: 50%;
+    top: 25%;
+  }
+  
+  .man3 img {
+    left: 5%;
+  }
+  
+  .man4 img {
+    right: 5%;
+    left: auto;
+  }
 
   .box3{
     width:95dvw;
@@ -98,6 +113,17 @@
   
   .game[data-game-type="wheel"] .arrow {
     left: 5% !important;
+  }
+  
+  .man2 {
+    height: 80%;
+    top: 15%;
+  }
+  
+  .man2 img {
+    width: 120%;
+    height: 120%;
+    left: -20%;
   }
 }
 
