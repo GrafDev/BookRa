@@ -209,7 +209,7 @@ export class Wheel {
                 this.modalShown = true;
                 setTimeout(() => {
                     showModal();
-                }, 3000); // 3 second pause before modal
+                }, 1000); // 1 second pause before modal
             }
         }
     }

@@ -1,5 +1,4 @@
 import { gsap } from 'gsap'
-import { images } from './images-loader.js'
 
 // Calculate wheel size based on screen dimensions
 function calculateWheelSize() {
@@ -67,27 +66,6 @@ let resizeListenerAdded = false;
 export function showModal() {
   const modalOverlay = document.getElementById('modalOverlay');
   
-  // Determine game type and set appropriate text image
-  const isDevelopment = import.meta.env.DEV;
-  let gameType = import.meta.env.VITE_GAME_TYPE || 'scratch';
-  
-  // In development mode, check localStorage for saved game type
-  if (isDevelopment) {
-    try {
-      const savedState = JSON.parse(localStorage.getItem('bookra_dev_state') || '{}');
-      if (savedState.gameType) {
-        gameType = savedState.gameType;
-      }
-    } catch (error) {
-      console.warn('Failed to load dev state for game type:', error);
-    }
-  }
-  
-  // Set modal text image based on game type
-  const modalTextImg = document.getElementById('modalText');
-  if (modalTextImg) {
-    modalTextImg.src = gameType === 'wheel' ? images.wheelModalText : images.scratchModalText;
-  }
   
   // Add resize listener if not already added
   if (!resizeListenerAdded) {
@@ -138,7 +116,6 @@ export function showModal() {
       modalOverlay.appendChild(shine1);
       modalOverlay.appendChild(shine2);
       
-      const centerImg = centerContainer.querySelector('img');
       const modalBackground = document.querySelector('.modal-background');
       const finalWidth = modalBackground.offsetWidth * 1.04; // 104% от ширины родителя
       const startWidth = finalWidth * 0.08; // 8% от финальной ширины

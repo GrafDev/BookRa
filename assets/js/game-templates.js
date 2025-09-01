@@ -68,6 +68,27 @@ export function createWheelContainer() {
   </div>`;
 }
 
+function setModalTextImage() {
+  const isDevelopment = import.meta.env.DEV;
+  let gameType = import.meta.env.VITE_GAME_TYPE || 'scratch';
+  
+  if (isDevelopment) {
+    try {
+      const savedState = JSON.parse(localStorage.getItem('bookra_dev_state') || '{}');
+      if (savedState.gameType) {
+        gameType = savedState.gameType;
+      }
+    } catch (error) {
+      console.warn('Failed to load dev state for modal text:', error);
+    }
+  }
+  
+  const modalTextImg = document.getElementById('modalText');
+  if (modalTextImg) {
+    modalTextImg.src = gameType === 'wheel' ? images.wheelModalText : images.scratchModalText;
+  }
+}
+
 export function loadGameContainers() {
   const isDevelopment = import.meta.env.DEV;
   const gameType = import.meta.env.VITE_GAME_TYPE || 'scratch';
@@ -102,4 +123,7 @@ export function loadGameContainers() {
       gameElement.innerHTML = createCardsContainer();
     }
   }
+  
+  // Set correct modal text image after containers are loaded
+  setModalTextImage();
 }

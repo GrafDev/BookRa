@@ -89,7 +89,7 @@ export class Cards {
 
     // Check if all cards revealed
     if (this.revealedCount === 3) {
-      setTimeout(() => this.onAllCardsRevealed(), 2000);
+      setTimeout(() => this.onAllCardsRevealed(), 0);
     }
 
     // Dispatch custom event
