@@ -1,4 +1,5 @@
 import { ImageEraser } from './eraser-effect.js';
+import { gsap } from 'gsap';
 
 export class Cards {
   constructor() {
@@ -153,9 +154,15 @@ export class Cards {
       let lastIndex = -1;
       
       const glowNext = () => {
-        // Убрать свечение со всех карточек
+        // Убрать свечение и дрожание со всех карточек
         cardBlocks.forEach(card => {
           card.style.boxShadow = 'none';
+          gsap.killTweensOf(card); // Остановить все GSAP анимации
+          gsap.set(card, { x: 0, y: 0 }); // Вернуть в исходное положение
+          if (card.shakeInterval) {
+            clearInterval(card.shakeInterval);
+            card.shakeInterval = null;
+          }
         });
         
         // Выбрать рандомную карточку (но не ту же что была)
@@ -166,14 +173,22 @@ export class Cards {
         
         // Добавить очень темно-красное свечение к выбранной карточке
         if (cardBlocks[randomIndex]) {
-          cardBlocks[randomIndex].style.boxShadow = '0 0 20px rgba(80, 0, 0, 1), 0 0 30px rgba(80, 0, 0, 0.8)';
+          const card = cardBlocks[randomIndex];
+          card.style.boxShadow = '0 0 20px rgba(80, 0, 0, 1), 0 0 30px rgba(80, 0, 0, 0.8)';
+          
+          // Добавить быстрое дрожание через setInterval - увеличиваем амплитуду
+          card.shakeInterval = setInterval(() => {
+            const randomX = (Math.random() - 0.5) * 8; // от -4 до 4
+            const randomY = (Math.random() - 0.5) * 8;
+            gsap.set(card, { x: randomX, y: randomY });
+          }, 50); // каждые 50мс
         }
         
         lastIndex = randomIndex;
       };
       
-      // Запуск мигания каждые 1.2 секунды
-      setInterval(glowNext, 1200);
+      // Запуск мигания каждые 0.8 секунды (быстрее)
+      setInterval(glowNext, 800);
       glowNext(); // первое мигание сразу
     }, 3000);
   }
