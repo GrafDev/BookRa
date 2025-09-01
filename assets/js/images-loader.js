@@ -19,6 +19,8 @@ import wheelPart31 from '../images/wheel-part3-1.webp'
 import wheelPart4 from '../images/wheel-part4.webp'
 import wheelPart5 from '../images/wheel-part5.webp'
 import wheelPart6 from '../images/wheel-part6.webp'
+import wheelText1 from '../images/wheel-text1.png'
+import wheelText2 from '../images/wheel-text2.png'
 
 // Background images
 import bgDesktop from '../images/bg-desktop.webp'
@@ -70,6 +72,8 @@ export const images = {
   wheelPart4,
   wheelPart5,
   wheelPart6,
+  wheelText1,
+  wheelText2,
   
   // Background
   bgDesktop,

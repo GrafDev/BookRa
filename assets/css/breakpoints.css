@@ -85,6 +85,16 @@
   .title {
     height: 30px;
   }
+  
+  .game[data-game-type="wheel"] {
+    height: calc(100% - 100px);
+    aspect-ratio: 1/1;
+    width: auto;
+  }
+  
+  .game[data-game-type="wheel"] .wheel-wrapper {
+    width: 99%;
+  }
 }
 
 /* Tablet portrait */
@@ -99,6 +109,9 @@
   
   .title-mobile {
     display: none;
+  }
+  .logo1, .logo2 {
+    min-height: 80px;
   }
 }
 

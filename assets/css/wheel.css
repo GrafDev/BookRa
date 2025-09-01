@@ -1,0 +1,107 @@
+/* Wheel game styles */
+
+.wheel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.wheel-wrapper {
+  width: 90%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wheel-wrapper > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wheel-text1,
+.wheel-text2 {
+  width: 92% !important;
+  height: 92% !important;
+  top: 4% !important;
+  left: 4% !important;
+}
+
+.wheel-part4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  aspect-ratio: 1 / 1;
+}
+
+.wheel-center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  width: 20%;
+  aspect-ratio: 1 / 1;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 15%;
+  aspect-ratio: 1 / 1;
+}
+
+.wheel-part4 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wheel-center-button > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wheel-center-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.arrow {
+  position: relative;
+}
+
+.arrow img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Mobile portrait for wheel game */
+@media (max-aspect-ratio: 3/4) and (max-width: 767px) {
+  .game[data-game-type="wheel"] {
+    width: 99dvw;
+  }
+}

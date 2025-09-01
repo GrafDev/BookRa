@@ -31,17 +31,35 @@ export function createCardsContainer() {
 export function createWheelContainer() {
   return `<div class="wheel-container">
     <div class="wheel-wrapper">
-      <div class="wheel-part1"></div>
-      <div class="wheel-part2"></div>
-      <div class="wheel-part3"></div>
-      <div class="wheel-part3-1"></div>
-      <div class="wheel-text1"></div>
-      <div class="wheel-text2"></div>
+      <div class="wheel-part1">
+        <img src="${images.wheelPart1}" alt="Wheel Part 1">
+      </div>
+      <div class="wheel-part2">
+        <img src="${images.wheelPart2}" alt="Wheel Part 2">
+      </div>
+      <div class="wheel-part3">
+        <img src="${images.wheelPart3}" alt="Wheel Part 3">
+      </div>
+      <div class="wheel-part3-1">
+        <img src="${images.wheelPart31}" alt="Wheel Part 3-1">
+      </div>
+      <div class="wheel-text1">
+        <img src="${images.wheelText1}" alt="Wheel Text 1">
+      </div>
+      <div class="wheel-text2">
+        <img src="${images.wheelText2}" alt="Wheel Text 2">
+      </div>
     </div>
-    <div class="wheel-part4"></div>
+    <div class="wheel-part4">
+      <img src="${images.wheelPart4}" alt="Wheel Part 4">
+    </div>
     <div class="wheel-center-button">
-      <div class="wheel-part5"></div>
-      <div class="wheel-part6"></div>
+      <div class="wheel-part5">
+        <img src="${images.wheelPart5}" alt="Wheel Part 5">
+      </div>
+      <div class="wheel-part6">
+        <img src="${images.wheelPart6}" alt="Wheel Part 6">
+      </div>
     </div>
     <div class="arrow">
       <img src="${images.arrowPart1}" alt="Arrow Part 1" class="arrow-part1">
