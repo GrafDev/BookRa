@@ -1,6 +1,8 @@
 import { ImageEraser } from './eraser-effect.js';
 import { gsap } from 'gsap';
 import { showModal } from './modal-animations.js';
+import { audioManager } from './audio-manager.js';
+import { images } from './images-loader.js';
 
 export class Cards {
   constructor() {
@@ -8,7 +10,7 @@ export class Cards {
     this.erasers = new Map();
     this.revealedCount = 0;
     this.clickCount = 0;
-    this.cardImages = ['./assets/images/first-cart.png', './assets/images/second-cart.png', './assets/images/third-cart.png'];
+    this.cardImages = [images.firstCart, images.secondCart, images.thirdCart];
     this.init();
     
     // Start sequential glow immediately - будет ждать пока карточки появятся
@@ -130,6 +132,10 @@ export class Cards {
 
   onAllCardsRevealed() {
     console.log('All cards revealed!');
+    
+    // Play win sound if enabled
+    audioManager.playWinSound();
+    
     // Show modal after delay
     setTimeout(() => {
       showModal();

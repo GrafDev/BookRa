@@ -52,6 +52,10 @@ import buttonModal from '../images/button-modal.webp'
 import scratchModalText from '../images/scratch-modal-text.png'
 import wheelModalText from '../images/wheel-modal-text.png'
 
+// Music control images
+import stopMusic from '../images/stop-music.png'
+import playMusic from '../images/play-music.png'
+
 export const images = {
   // Cards
   backCart,
@@ -103,5 +107,9 @@ export const images = {
   bgModalRight,
   buttonModal,
   scratchModalText,
-  wheelModalText
+  wheelModalText,
+  
+  // Music control
+  stopMusic,
+  playMusic
 }

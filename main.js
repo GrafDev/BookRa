@@ -6,6 +6,7 @@ import { Cards } from './assets/js/cards.js'
 import { Wheel } from './assets/js/wheel.js'
 import { loadGameContainers } from './assets/js/game-templates.js'
 import { preloader } from './assets/js/preloader.js'
+import { audioManager } from './assets/js/audio-manager.js'
 
 // Prevent all zoom functionality
 function preventZoom() {
@@ -83,11 +84,10 @@ async function initApp() {
   }
 
   // Initialize game logic based on type
-  let gameInstance = null;
   if (gameType === 'scratch') {
-    gameInstance = new Cards();
+    new Cards();
   } else if (gameType === 'wheel') {
-    gameInstance = new Wheel();
+    new Wheel();
   }
 
   // Initialize immediate glow animations
@@ -106,6 +106,9 @@ async function initApp() {
 
   // Initialize zoom prevention
   preventZoom();
+  
+  // Load audio manager state
+  audioManager.loadState();
 }
 
 // Start the app
