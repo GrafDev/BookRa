@@ -93,7 +93,7 @@ export function createAllElementsSmoothAppear() {
   
   if (bgDesktop) {
     masterTimeline.to(bgDesktop, {
-      filter: 'saturate(1)',
+      filter: 'saturate(0.9)',
       duration: 2,
       ease: "power2.out"
     }, 0);
@@ -101,11 +101,15 @@ export function createAllElementsSmoothAppear() {
   
   if (bgMobile) {
     masterTimeline.to(bgMobile, {
-      filter: 'saturate(1)',
+      filter: 'saturate(0.9)',
       duration: 2,
       ease: "power2.out"
     }, 0);
   }
+  
+  // Show main containers during appears animation
+  masterTimeline.to('.main-container', { opacity: 1, duration: 0.8 }, 0.2);
+  masterTimeline.to('.medias', { opacity: 1, duration: 0.8 }, 0.2);
   
   // box2 elements (right side)
   const box2Elements = ['.man4', '.man2'];

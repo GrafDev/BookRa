@@ -101,16 +101,27 @@ export class Cards {
   animateAppearance() {
     const container = document.querySelector('.cards-container');
     
-    // Show container first
-    setTimeout(() => {
-      container.classList.add('visible');
-    }, 300);
+    // GSAP animation with high z-index from start
+    gsap.set(container, { zIndex: 1000 }); // Set high z-index immediately
+    
+    // Show container first with GSAP
+    gsap.to(container, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: 0.3
+    });
 
-    // Show cards with stagger
+    // Show cards with stagger using GSAP
     this.cardBlocks.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add('visible');
-      }, 600 + (index * 200));
+      gsap.to(card, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.4,
+        ease: "back.out(1.7)",
+        delay: 0.6 + (index * 0.2)
+      });
     });
 
 
