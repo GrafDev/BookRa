@@ -1,6 +1,6 @@
 import { ImageEraser } from './eraser-effect.js';
 import { gsap } from 'gsap';
-import { showModal } from './modal-animations.js';
+import { modalManager } from './modal-manager.js';
 import { audioManager } from './audio-manager.js';
 import { images } from './images-loader.js';
 
@@ -138,7 +138,7 @@ export class Cards {
     
     // Show modal after delay
     setTimeout(() => {
-      showModal();
+      modalManager.showModal();
     }, 1000);
     
     // Dispatch event for game completion

@@ -56,7 +56,8 @@ import wheelModalText from '../images/wheel-modal-text.png'
 import stopMusic from '../images/stop-music.png'
 import playMusic from '../images/play-music.png'
 
-export const images = {
+// Critical images for game start
+export const criticalImages = {
   // Cards
   backCart,
   firstCart,
@@ -101,15 +102,23 @@ export const images = {
   man4Part1,
   man4Part2,
   
-  // Modal
+  // Music control (only for scratch)
+  stopMusic,
+  playMusic
+}
+
+// Modal images - can be loaded later
+export const modalImages = {
   bgModalCenter,
   bgModalLeft,
   bgModalRight,
   buttonModal,
   scratchModalText,
-  wheelModalText,
-  
-  // Music control
-  stopMusic,
-  playMusic
+  wheelModalText
+}
+
+// Combined for backward compatibility
+export const images = {
+  ...criticalImages,
+  ...modalImages
 }

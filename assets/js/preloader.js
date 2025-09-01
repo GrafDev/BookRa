@@ -1,4 +1,4 @@
-import { images } from './images-loader.js'
+import { criticalImages, modalImages } from './images-loader.js'
 
 // Preloader functionality
 export class Preloader {
@@ -9,13 +9,19 @@ export class Preloader {
     this.loadedImages = 0
     this.totalImages = 0
     this.imageUrls = []
+    this.modalImagesLoaded = false
   }
 
-  // Extract all image URLs from images object
-  extractImageUrls() {
-    this.imageUrls = Object.values(images)
+  // Extract critical image URLs
+  extractCriticalImageUrls() {
+    this.imageUrls = Object.values(criticalImages)
     this.totalImages = this.imageUrls.length
-    console.log(`Preloading ${this.totalImages} images:`, this.imageUrls)
+    console.log(`Preloading ${this.totalImages} critical images:`, this.imageUrls)
+  }
+  
+  // Extract modal image URLs
+  extractModalImageUrls() {
+    return Object.values(modalImages)
   }
 
   // Update progress bar and percentage
@@ -48,12 +54,12 @@ export class Preloader {
     })
   }
 
-  // Load all images
-  async loadAllImages() {
-    this.extractImageUrls()
+  // Load critical images only
+  async loadCriticalImages() {
+    this.extractCriticalImageUrls()
     
     if (this.totalImages === 0) {
-      console.warn('No images to preload')
+      console.warn('No critical images to preload')
       return
     }
 
@@ -61,10 +67,49 @@ export class Preloader {
     
     try {
       await Promise.all(loadPromises)
-      console.log('All images loaded successfully')
+      console.log('Critical images loaded successfully')
     } catch (error) {
-      console.error('Error loading images:', error)
+      console.error('Error loading critical images:', error)
     }
+  }
+  
+  // Load modal images in background
+  async loadModalImages() {
+    if (this.modalImagesLoaded) {
+      return
+    }
+    
+    const modalUrls = this.extractModalImageUrls()
+    console.log(`Loading ${modalUrls.length} modal images in background:`, modalUrls)
+    
+    const loadPromises = modalUrls.map(url => {
+      return new Promise((resolve) => {
+        const img = new Image()
+        img.onload = () => {
+          console.log(`Modal image loaded: ${url}`)
+          resolve(url)
+        }
+        img.onerror = () => {
+          console.warn(`Failed to load modal image: ${url}`)
+          resolve(url) // Don't block on errors
+        }
+        img.src = url
+      })
+    })
+    
+    try {
+      await Promise.all(loadPromises)
+      this.modalImagesLoaded = true
+      console.log('All modal images loaded successfully')
+    } catch (error) {
+      console.error('Error loading modal images:', error)
+      this.modalImagesLoaded = true // Mark as loaded anyway
+    }
+  }
+  
+  // Check if modal images are ready
+  isModalReady() {
+    return this.modalImagesLoaded
   }
 
   // Hide preloader with animation
@@ -79,22 +124,27 @@ export class Preloader {
     })
   }
 
-  // Main preloader function
+  // Main preloader function - only critical images
   async load() {
-    console.log('Starting preloader...')
+    console.log('Starting critical preloader...')
     
     try {
-      await this.loadAllImages()
+      await this.loadCriticalImages()
       
       // Small delay to show 100% briefly
-      await new Promise(resolve => setTimeout(resolve, 500))
+      await new Promise(resolve => setTimeout(resolve, 300))
       
       await this.hide()
-      console.log('Preloader complete')
+      console.log('Critical preloader complete')
+      
+      // Start loading modal images in background
+      this.loadModalImages() // Don't await - run in background
       
     } catch (error) {
       console.error('Preloader error:', error)
       await this.hide() // Hide anyway
+      // Still try to load modal images
+      this.loadModalImages()
     }
   }
 }

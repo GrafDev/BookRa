@@ -1,6 +1,6 @@
 import { WheelAnimations } from './wheel-animations.js';
 import { gsap } from 'gsap';
-import { showModal } from './modal-animations.js';
+import { modalManager } from './modal-manager.js';
 
 export class Wheel {
     constructor() {
@@ -208,7 +208,7 @@ export class Wheel {
             if (!this.modalShown) {
                 this.modalShown = true;
                 setTimeout(() => {
-                    showModal();
+                    modalManager.showModal();
                 }, 1000); // 1 second pause before modal
             }
         }
