@@ -44,8 +44,16 @@
     left: auto;
   }
   
+  .man1 {
+    top: 15%;
+  }
+  
   .man1 img {
-    left: -20%;
+    left: -45%;
+  }
+  
+  .man2 img {
+    left: 40%;
   }
 
   .box3{
@@ -150,6 +158,19 @@
   }
   .logo1, .logo2 {
     min-height: 80px;
+  }
+  
+  .man3 img, .man4 img {
+    top: 35%;
+  }
+  
+  .man3 img {
+    left: 10%;
+  }
+  
+  .man4 img {
+    right: 10%;
+    left: auto;
   }
 }
 
