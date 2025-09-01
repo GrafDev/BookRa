@@ -32,7 +32,7 @@
   .man3 img, .man4 img {
     width: 50%;
     height: 50%;
-    top: 25%;
+    top: 19%;
   }
   
   .man3 img {
@@ -42,6 +42,10 @@
   .man4 img {
     right: 5%;
     left: auto;
+  }
+  
+  .man1 img {
+    left: -20%;
   }
 
   .box3{
@@ -124,6 +128,10 @@
     width: 120%;
     height: 120%;
     left: -20%;
+  }
+  
+  .man1 img {
+    left: -30%;
   }
 }
 

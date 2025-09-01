@@ -313,6 +313,12 @@ export function initImmediateAnimations() {
 export function initMan1Animations() {
   // Animations that start after appearance is complete
   
-  // Apply orbit with random fade animation to man1 (bigger amplitude, faster)
-  createOrbitWithRandomFade('.man1', 50, 5);
+  // Check if mobile device - skip orbit animation on mobile
+  const isMobile = window.innerWidth <= 767 || 
+                   (window.innerHeight <= 500 && window.innerWidth / window.innerHeight > 1.5);
+  
+  if (!isMobile) {
+    // Apply orbit with random fade animation to man1 (bigger amplitude, faster)
+    createOrbitWithRandomFade('.man1', 50, 5);
+  }
 }
