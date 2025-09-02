@@ -111,7 +111,6 @@ export function loadGameContainers() {
       } else {
         cardsContainer.style.display = 'flex';
         cardsContainer.style.flexDirection = 'column';
-        cardsContainer.style.gap = '6%';
         wheelContainer.style.display = 'none';
       }
     }

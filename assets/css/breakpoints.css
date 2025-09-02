@@ -110,6 +110,19 @@
     padding-top: 1rem;
     flex: 1;
   }
+  
+  .cards-top-section {
+    gap: 8%;
+    margin-bottom: 8%;
+  }
+  
+  .card-block {
+    margin: 0;
+  }
+  
+  .card-block:not(:last-child) {
+    margin-bottom: 8%;
+  }
 }
 
 /* Mobile landscape - wide screens with small height */

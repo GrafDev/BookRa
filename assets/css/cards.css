@@ -11,7 +11,6 @@
   transition: all 0.6s ease;
   padding: 2%;
   box-sizing: border-box;
-  gap: 6%;
   position: relative;
   z-index: 500;
 }
@@ -125,12 +124,6 @@
   }
 }
 
-@media (max-aspect-ratio: 3/4) and (max-width: 767px) {
-  .cards-container {
-    gap: 3%;
-    padding: 1%;
-  }
-}
 
 @media (max-height: 500px) and (orientation: landscape) {
   .cards-container {
