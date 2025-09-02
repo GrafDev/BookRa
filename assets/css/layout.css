@@ -26,6 +26,19 @@
 .logo1, .title, .logo2 {
   width: 100%;
   min-height: 50px;
+  margin-bottom: 1.5dvh;
+}
+
+.title {
+  min-height: 60px;
+}
+
+.logo1 {
+  margin-top: 1.5dvh;
+}
+
+.logo2 {
+  margin-bottom: 0;
 }
 
 .game {

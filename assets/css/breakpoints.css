@@ -136,10 +136,10 @@
     width: 55dvw;
   }
   .logo1, .title, .logo2{
-    min-height: 35px;
+    min-height: 25px;
   }
   .title {
-    height: 30px;
+    height: 25px;
   }
   
   .game[data-game-type="wheel"] {

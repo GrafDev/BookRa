@@ -18,10 +18,10 @@
 .modal-shine-1,
 .modal-shine-2 {
   position: absolute;
-  top: -75%;
-  left: -75%;
-  width: 250%;
-  height: 250%;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
   animation: rotate-shine 5s linear infinite;
   pointer-events: none;
   opacity: 0;
@@ -202,7 +202,9 @@
 /* Mobile landscape - move modal content higher */
 @media (max-width: 1024px) and (orientation: landscape) {
   .modal-overlay {
-    padding-top: 3vh;
+    padding-bottom: 5vh;
+    align-items: flex-start;
+    padding-top: 1vh;
   }
   
   .modal-button-container {
