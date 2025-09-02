@@ -224,6 +224,12 @@
   .logo1, .logo2 {
     min-height: 60px;
   }
+  
+  .cards-container {
+    aspect-ratio: 1.8 / 1;
+    height: auto;
+    max-height: 65dvh;
+  }
 }
 
 /* Desktop */

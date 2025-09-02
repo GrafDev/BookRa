@@ -43,7 +43,11 @@
 
 /* Tablets in landscape - wider box3 */
 @media (min-width: 940px) and (max-width: 1024px) and (orientation: landscape) {
-
+  .cards-container {
+    aspect-ratio: 1.8 / 1;
+    height: auto;
+    max-height: 65dvh;
+  }
 }
 
 /* Desktop landscape - game to bottom */
@@ -54,5 +58,11 @@
   
   .game {
     margin-top: auto;
+  }
+  
+  .cards-container {
+    aspect-ratio: 1.8 / 1;
+    height: auto;
+    max-height: 65dvh;
   }
 }

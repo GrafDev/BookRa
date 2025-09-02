@@ -28,7 +28,7 @@
   width: 100%;
   height: auto;
   gap: 6%;
-  margin-bottom: 6%;
+  margin-bottom: 3%;
 }
 
 /* Bottom section with 1 card */
@@ -128,8 +128,11 @@
 
 @media (max-height: 500px) and (orientation: landscape) {
   .cards-container {
-    gap: 4%;
     padding: 1%;
+    aspect-ratio: 1.7 / 1;
+    max-height: 65dvh;
+    width: auto;
+    margin: 0 auto;
   }
   
   .cards-top-section {
