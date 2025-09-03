@@ -59,11 +59,14 @@
   justify-content: space-between;
   align-items: flex-end;
   opacity: 0;
+  pointer-events: none;
+  touch-action: none;
 }
 
 .box1, .box2 {
   width: 30%;
   height: 100%;
+  pointer-events: none;
 }
 
 .man3 {
@@ -92,6 +95,7 @@
   height: 66.67%;
   position: relative;
   z-index: -1 !important;
+  pointer-events: none;
 }
 
 .man2 {
@@ -99,6 +103,7 @@
   height: 66.67%;
   position: relative;
   filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.6));
+  pointer-events: none;
 }
 
 .man1 img {

@@ -17,6 +17,7 @@
   transform: translate(-50%, -50%) rotate(var(--rotation));
   transform-origin: center center;
   z-index: 1 !important;
+  pointer-events: auto;
 }
 
 .wheel-wrapper > div {
@@ -25,6 +26,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .wheel-wrapper img {
@@ -39,6 +41,7 @@
   height: 92% !important;
   top: 4% !important;
   left: 4% !important;
+  pointer-events: none;
 }
 
 
@@ -60,6 +63,7 @@
   z-index: 15;
   width: 20%;
   aspect-ratio: 1 / 1;
+  pointer-events: auto;
 }
 
 .arrow {
@@ -113,5 +117,9 @@
 @media (max-aspect-ratio: 3/4) and (max-width: 767px) {
   .game[data-game-type="wheel"] {
     width: 99dvw;
+  }
+  
+  .wheel-container {
+    transform: translateY(10%);
   }
 }

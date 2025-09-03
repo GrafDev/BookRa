@@ -161,7 +161,7 @@
 }
 
 .modal-button {
-  width: 70%;
+  width: 85%;
   aspect-ratio: 5.7;
   cursor: pointer;
   z-index: 15;
@@ -173,7 +173,7 @@
 /* Desktop - smaller button */
 @media (min-width: 1025px) {
   .modal-button {
-    width: 70%;
+    width: 85%;
     aspect-ratio: 5.7;
   }
 }
@@ -189,7 +189,7 @@
 
 @media (max-width: 768px) {
   .modal-button {
-    width: 70%;
+    width: 85%;
     aspect-ratio: 5.7;
   }
   

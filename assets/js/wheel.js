@@ -67,6 +67,15 @@ export class Wheel {
             }
         });
 
+        // Add click handler for the entire wheel wrapper
+        if (this.wheelWrapper) {
+            this.wheelWrapper.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.spin();
+            });
+        }
+
         // Keyboard support
         document.addEventListener('keydown', (e) => {
             if ((e.code === 'Space' || e.code === 'Enter') && !this.isSpinning) {
