@@ -59,21 +59,6 @@
           "destination": "/index.html"
         }
       ]
-    },
-    {
-      "site": "bookra-scratch-inline",
-      "public": "dist/inline",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
     }
   ]
 }

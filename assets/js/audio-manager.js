@@ -1,5 +1,5 @@
 import { images } from './images-loader.js'
-import sound1Mp3 from '../media/sound1.mp3'
+import { sound1 } from './audio-base64.js'
 
 class AudioManager {
   constructor() {
@@ -83,7 +83,7 @@ class AudioManager {
 
   async loadSounds() {
     try {
-      this.winSoundAudio = new Audio(sound1Mp3);
+      this.winSoundAudio = new Audio(sound1);
       this.winSoundAudio.preload = 'auto';
       this.winSoundAudio.volume = 0.7; // Set volume to 70%
     } catch (error) {
