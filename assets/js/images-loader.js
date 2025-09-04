@@ -1,60 +1,60 @@
-// Import all images for proper build processing
+// Import all images as base64 from generated files
 
 // Cards images
-import backCart from '../images/back-cart.webp'
-import firstCart from '../images/first-cart.png'
-import secondCart from '../images/second-cart.png'
-import thirdCart from '../images/third-cart.png'
-import blanketCart from '../images/blanket-cart.webp'
-import borderCart from '../images/border-cart.webp'
-import scratch from '../images/scratch.png'
+import backCart from '../base64/back-cart.js'
+import firstCart from '../base64/first-cart.js'
+import secondCart from '../base64/second-cart.js'
+import thirdCart from '../base64/third-cart.js'
+import blanketCart from '../base64/blanket-cart.js'
+import borderCart from '../base64/border-cart.js'
+import scratch from '../base64/scratch.js'
 
 // Wheel images
-import arrowPart1 from '../images/arrow-part1.png'
-import arrowPart2 from '../images/arrow-part2.png'
-import wheelPart1 from '../images/wheel-part1.webp'
-import wheelPart2 from '../images/wheel-part2.png'
-import wheelPart3 from '../images/wheel-part3.webp'
-import wheelPart31 from '../images/wheel-part3-1.webp'
-import wheelPart4 from '../images/wheel-part4.webp'
-import wheelPart5 from '../images/wheel-part5.webp'
-import wheelPart6 from '../images/wheel-part6.webp'
-import wheelText1 from '../images/wheel-text1.png'
-import wheelText2 from '../images/wheel-text2.png'
+import arrowPart1 from '../base64/arrow-part1.js'
+import arrowPart2 from '../base64/arrow-part2.js'
+import wheelPart1 from '../base64/wheel-part1.js'
+import wheelPart2 from '../base64/wheel-part2.js'
+import wheelPart3 from '../base64/wheel-part3.js'
+import wheelPart31 from '../base64/wheel-part3-1.js'
+import wheelPart4 from '../base64/wheel-part4.js'
+import wheelPart5 from '../base64/wheel-part5.js'
+import wheelPart6 from '../base64/wheel-part6.js'
+import wheelText1 from '../base64/wheel-text1.js'
+import wheelText2 from '../base64/wheel-text2.js'
 
 // Background images
-import bgDesktop from '../images/bg-desktop.webp'
-import bgMobile from '../images/bg-mobile.webp'
+import bgDesktop from '../base64/bg-desktop.js'
+import bgMobile from '../base64/bg-mobile.js'
 
 // Logo images
-import logo1Part1 from '../images/logo1-part1.png'
-import logo1Part2 from '../images/logo1-part2.png'
-import logo2Part1 from '../images/logo2-part1.webp'
-import logo2Part2 from '../images/logo2-part2.png'
+import logo1Part1 from '../base64/logo1-part1.js'
+import logo1Part2 from '../base64/logo1-part2.js'
+import logo2Part1 from '../base64/logo2-part1.js'
+import logo2Part2 from '../base64/logo2-part2.js'
 
 // Title images
-import title from '../images/title.png'
-import titleMobile from '../images/title-mobile.webp'
+import title from '../base64/title.js'
+import titleMobile from '../base64/title-mobile.js'
 
 // Character images
-import man1Part1 from '../images/man1-part1.webp'
-import man2 from '../images/man2.webp'
-import man3Part1 from '../images/man3-part1.webp'
-import man3Part2 from '../images/man3-part2.webp'
-import man4Part1 from '../images/man4-part1.webp'
-import man4Part2 from '../images/man4-part2.webp'
+import man1Part1 from '../base64/man1-part1.js'
+import man2 from '../base64/man2.js'
+import man3Part1 from '../base64/man3-part1.js'
+import man3Part2 from '../base64/man3-part2.js'
+import man4Part1 from '../base64/man4-part1.js'
+import man4Part2 from '../base64/man4-part2.js'
 
 // Modal images
-import bgModalCenter from '../images/bg-modal-center.webp'
-import bgModalLeft from '../images/bg-modal-left.webp'
-import bgModalRight from '../images/bg-modal-right.webp'
-import buttonModal from '../images/button-modal.webp'
-import scratchModalText from '../images/scratch-modal-text.png'
-import wheelModalText from '../images/wheel-modal-text.png'
+import bgModalCenter from '../base64/bg-modal-center.js'
+import bgModalLeft from '../base64/bg-modal-left.js'
+import bgModalRight from '../base64/bg-modal-right.js'
+import buttonModal from '../base64/button-modal.js'
+import scratchModalText from '../base64/scratch-modal-text.js'
+import wheelModalText from '../base64/wheel-modal-text.js'
 
 // Music control images
-import stopMusic from '../images/stop-music.png'
-import playMusic from '../images/play-music.png'
+import stopMusic from '../base64/stop-music.js'
+import playMusic from '../base64/play-music.js'
 
 // Critical images for game start
 export const criticalImages = {
