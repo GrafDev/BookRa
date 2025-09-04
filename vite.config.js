@@ -42,10 +42,12 @@ export default defineConfig(({ mode }) => {
             outDir: mode === 'scratch-click' ? 'dist/scratch-click' :
                     mode === 'scratch-auto' ? 'dist/scratch-auto' :
                     mode === 'wheel-click' ? 'dist/wheel-click' :
-                    mode === 'wheel-auto' ? 'dist/wheel-auto' : 'dist',
+                    mode === 'wheel-auto' ? 'dist/wheel-auto' :
+                    mode === 'inline' ? 'dist/inline' : 'dist',
             assetsDir: 'assets',
             cssCodeSplit: true,
             cssMinify: true,
+            assetsInlineLimit: mode === 'inline' ? 10000000 : 4096, // Inline all assets up to 10MB in inline mode
             rollupOptions: {
                 input: {
                     main: '/index.html'

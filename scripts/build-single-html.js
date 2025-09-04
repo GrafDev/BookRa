@@ -54,7 +54,46 @@ jsMatches.forEach(match => {
     const jsPath = path.join(distDir, jsFile);
     
     if (fs.existsSync(jsPath)) {
-      const jsContent = fs.readFileSync(jsPath, 'utf8');
+      let jsContent = fs.readFileSync(jsPath, 'utf8');
+      
+      // Replace image references in JS code with base64 data
+      const base64Dir = path.join(__dirname, '../assets/base64');
+      if (fs.existsSync(base64Dir)) {
+        const base64Files = fs.readdirSync(base64Dir).filter(file => file.endsWith('.js'));
+        base64Files.forEach(base64File => {
+          const base64Path = path.join(base64Dir, base64File);
+          const base64Content = fs.readFileSync(base64Path, 'utf8');
+          const match = base64Content.match(/const\s+\w+\s*=\s*"([^"]+)"/);
+          if (match) {
+            const base64Data = match[1];
+            const imageName = path.parse(base64File).name;
+            
+            // Replace import references in JS - need to escape special chars and match whole property
+            const escapedImageName = imageName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+            jsContent = jsContent.replace(new RegExp(`\\bimages\\.${escapedImageName}\\b`, 'g'), `"${base64Data}"`);
+            jsContent = jsContent.replace(new RegExp(`\\bD\\.${escapedImageName}\\b`, 'g'), `"${base64Data}"`);
+          }
+        });
+      }
+      
+      // Replace dynamic imports of modal-animations with direct access to global functions
+      jsContent = jsContent.replace(
+        /import\(['"]\.\/modal-animations\.js['"]\)/g,
+        'Promise.resolve({ showModal: window.showModal, hideModal: window.hideModal })'
+      );
+      
+      // Make modal functions global if this is modal-animations file
+      if (jsFile.includes('modal-animations')) {
+        jsContent = jsContent.replace(
+          /export\s*{\s*(\w+)\s*as\s*(\w+),\s*(\w+)\s*as\s*(\w+)\s*}/,
+          'export { $1 as $2, $3 as $4 }; window.$2 = $1; window.$4 = $3;'
+        );
+        jsContent = jsContent.replace(
+          /export\s*{\s*(\w+),\s*(\w+)\s*}/,
+          'export { $1, $2 }; window.$1 = $1; window.$2 = $2;'
+        );
+      }
+      
       const inlineJS = `<script type="module">${jsContent}</script>`;
       htmlContent = htmlContent.replace(match, inlineJS);
       console.log(`Inlined JS: ${jsFile}`);
@@ -129,8 +168,12 @@ if (fs.existsSync(base64Dir)) {
   }
 }
 
-// Clean up any remaining relative paths
+// Clean up any remaining relative paths and external JS imports
 htmlContent = htmlContent.replace(/href="\.\/[^"]*"/g, 'href=""');
+
+// Remove any remaining external JS imports
+htmlContent = htmlContent.replace(/import\{[^}]*\}from"\.\/[^"]*\.js"/g, '');
+htmlContent = htmlContent.replace(/from"\.\/[^"]*\.js"/g, '');
 
 // Add meta tags for playable ads
 const metaTags = `
