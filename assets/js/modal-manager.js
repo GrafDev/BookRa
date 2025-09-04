@@ -1,32 +1,16 @@
 import { preloader } from './preloader.js'
+import * as modalAnimations from './modal-animations.js'
 
 class ModalManager {
   constructor() {
-    this.modalAnimations = null
+    this.modalAnimations = modalAnimations
     this.isLoading = false
     this.pendingShow = false
   }
 
-  // Lazy load modal animations module
-  async loadModalAnimations() {
-    if (this.modalAnimations || this.isLoading) {
-      return this.modalAnimations
-    }
-
-    this.isLoading = true
-    console.log('Loading modal animations module...')
-
-    try {
-      const module = await import('./modal-animations.js')
-      this.modalAnimations = module
-      console.log('Modal animations module loaded')
-      return this.modalAnimations
-    } catch (error) {
-      console.error('Failed to load modal animations:', error)
-      return null
-    } finally {
-      this.isLoading = false
-    }
+  // Load modal animations module (now synchronous)
+  loadModalAnimations() {
+    return this.modalAnimations
   }
 
   // Show modal with loading check
@@ -46,8 +30,8 @@ class ModalManager {
         await this.waitForModalImages()
       }
 
-      // Load modal animations module if not loaded
-      const modalModule = await this.loadModalAnimations()
+      // Get modal animations module (now synchronous)
+      const modalModule = this.loadModalAnimations()
       if (!modalModule) {
         console.error('Failed to load modal module')
         return

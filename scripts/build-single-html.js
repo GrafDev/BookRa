@@ -175,6 +175,12 @@ htmlContent = htmlContent.replace(/href="\.\/[^"]*"/g, 'href=""');
 htmlContent = htmlContent.replace(/import\{[^}]*\}from"\.\/[^"]*\.js"/g, '');
 htmlContent = htmlContent.replace(/from"\.\/[^"]*\.js"/g, '');
 
+// Replace offer_link placeholder with FbPlayableAd.onCTAClick() for INAPP compliance
+htmlContent = htmlContent.replace(
+  'href="{offer_link}"',
+  'href="#" onclick="FbPlayableAd.onCTAClick()"'
+);
+
 // Add meta tags for playable ads
 const metaTags = `
   <meta charset="utf-8">
