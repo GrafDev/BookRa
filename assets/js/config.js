@@ -1,3 +1,5 @@
+import { images } from './images-loader.js';
+
 export const gameConfig = {
   gameTypes: {
     scratch: {
@@ -5,13 +7,13 @@ export const gameConfig = {
       backgroundColor: 'transparent',
       images: {
         logo1: {
-          part1: './assets/images/logo1-part1.png',
-          part2: './assets/images/logo1-part2.png'
+          part1: images.logo1Part1,
+          part2: images.logo1Part2
         },
-        title: './assets/images/title.png',
+        title: images.title,
         logo2: {
-          part1: './assets/images/logo2-part1.webp',
-          part2: './assets/images/logo2-part2.png'
+          part1: images.logo2Part1,
+          part2: images.logo2Part2
         }
       }
     },
@@ -20,13 +22,13 @@ export const gameConfig = {
       backgroundColor: 'transparent',
       images: {
         logo1: {
-          part1: './assets/images/logo1-part1.png',
-          part2: './assets/images/logo1-part2.png'
+          part1: images.logo1Part1,
+          part2: images.logo1Part2
         },
-        title: './assets/images/title.png',
+        title: images.title,
         logo2: {
-          part1: './assets/images/logo2-part1.webp',
-          part2: './assets/images/logo2-part2.png'
+          part1: images.logo2Part1,
+          part2: images.logo2Part2
         }
       }
     }
@@ -34,16 +36,16 @@ export const gameConfig = {
 
   characters: {
     man1: {
-      part1: './assets/images/man1-part1.webp'
+      part1: images.man1Part1
     },
-    man2: './assets/images/man2.webp',
+    man2: images.man2,
     man3: {
-      part1: './assets/images/man3-part1.webp',
-      part2: './assets/images/man3-part2.webp'
+      part1: images.man3Part1,
+      part2: images.man3Part2
     },
     man4: {
-      part1: './assets/images/man4-part1.webp',
-      part2: './assets/images/man4-part2.webp'
+      part1: images.man4Part1,
+      part2: images.man4Part2
     }
   },
 

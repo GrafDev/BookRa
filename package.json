@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "build:all": "vite build --mode scratch-click && vite build --mode scratch-auto && vite build --mode wheel-click && vite build --mode wheel-auto",
     "build:playable": "node scripts/build-playable.js",
+    "build:single": "node scripts/build-single-html.js",
     "convert:base64": "node scripts/convert-images-to-base64.js",
     "deploy:all": "npm run build:all && firebase deploy",
     "release": "node scripts/release.js"
