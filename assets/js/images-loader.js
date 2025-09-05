@@ -1,6 +1,6 @@
-// Direct import of all base64 images
+// Import from regular file paths
 export {
   criticalImages,
   modalImages, 
   images
-} from './images-base64-direct.js'
+} from './images-loader-files.js'
